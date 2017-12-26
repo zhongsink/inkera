@@ -1,0 +1,7 @@
+/build/
+/config/
+/node_modules/
+/scripts/
+**/__tests__/
+**/statics.js
+wallaby.js
