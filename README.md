@@ -1,4 +1,4 @@
-# Koa React Universal
+# inkera
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/kimjuny/koa-react-universal.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/kimjuny/koa-react-universal.svg?branch=master)](https://travis-ci.org/kimjuny/koa-react-universal)
@@ -6,8 +6,6 @@
 [![Test Coverage](https://codeclimate.com/github/kimjuny/koa-react-universal/badges/coverage.svg)](https://codeclimate.com/github/kimjuny/koa-react-universal/coverage)
 
 > koa2、react、react-universal-component、koa-webpack-server、async/await、code-splitting、hot-module-replacement、react-router4、redux-thunk
-
-This project is dedicated to build <b>simple yet powerful</b> Koa-React-Universal boilerplate.
 
 <b>Less is More:</b> All key ingredients are in `src/development`、`src/production` and webpack configurations, easy to understand、set-up and extend. We promise to use the most recent & official packages(as much as we can), no weird or tricky stuffs, keeping this project <b>clean and fully customizable</b>.
 
@@ -21,9 +19,7 @@ This project is dedicated to build <b>simple yet powerful</b> Koa-React-Universa
 
 ### Screenshots
 
-DEMO: Search Github Repositories.
-
-> Noted: Github search API has [Rate Limitation](https://developer.github.com/v3/search/#rate-limit) of 10 reqs/min (without credentials).
+developing
 
 ### Components
 
