@@ -11,7 +11,7 @@
     "dev": "cross-env NODE_ENV=development PORT=3006 node ./src/development",
     "lint": "./node_modules/.bin/eslint src",
     "test": "./node_modules/.bin/jest --config jest.config.js --no-cache",
-    "codecov": "CODECLIMATE_REPO_TOKEN=ABCD11110000000 codeclimate-test-reporter < coverage/lcov.info"
+    "codecov": "CODECLIMATE_REPO_TOKEN=? codeclimate-test-reporter < coverage/lcov.info"
   },
   "dependencies": {
     "axios": "^0.17.0",
