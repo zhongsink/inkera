@@ -2,15 +2,15 @@
 module.exports = (wallaby) => {
   return {
     files: [
-      { pattern: 'src/**/*.jsx', load: true },
-      { pattern: 'src/**/__tests__/*.spec.js', ignore: true },
-      { pattern: 'src/**/*.js', load: true },
-      { pattern: 'src/**/*.less', ignore: true },
+      { pattern: 'app/**/*.jsx', load: true },
+      { pattern: 'app/**/__tests__/*.spec.js', ignore: true },
+      { pattern: 'app/**/*.js', load: true },
+      { pattern: 'app/**/*.less', ignore: true },
       { pattern: 'jest.config.js', load: true },
       { pattern: 'config/*.js', ignore: true },
     ],
     tests: [
-      'src/**/__tests__/*.spec.js',
+      'app/**/__tests__/*.spec.js',
     ],
     env: {
       type: 'node',

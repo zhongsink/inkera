@@ -2,7 +2,7 @@
 
 > koa2、react、react-universal-component、koa-webpack-server、async/await、code-splitting、hot-module-replacement、react-router4、redux-thunk
 
-<b>Less is More:</b> All key ingredients are in `src/development`、`src/production` and webpack configurations, easy to understand、set-up and extend. We promise to use the most recent & official packages(as much as we can), no weird or tricky stuffs, keeping this project <b>clean and fully customizable</b>.
+<b>Less is More:</b> All key ingredients are in `app/development`、`app/production` and webpack configurations, easy to understand、set-up and extend. We promise to use the most recent & official packages(as much as we can), no weird or tricky stuffs, keeping this project <b>clean and fully customizable</b>.
 
 <b>Fully functional:</b> HMR for client and server side, code splitting for both javascript and css, universal support for async/await programming with koa2 server-side and redux-thunk client-side...
 

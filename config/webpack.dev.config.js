@@ -11,7 +11,7 @@ const client = {
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',
     'react-hot-loader/patch',
-    path.resolve(__dirname, '../src/client/index.jsx'),
+    path.resolve(__dirname, '../app/client/index.jsx'),
   ],
   output: {
     publicPath: '/build/client/',
@@ -80,7 +80,7 @@ const server = {
   target: 'node',
   entry: [
     'babel-polyfill',
-    path.resolve(__dirname, '../src/server/middlewares'),
+    path.resolve(__dirname, '../app/server/middlewares'),
   ],
   output: {
     path: path.resolve(__dirname, '../build/server'),

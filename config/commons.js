@@ -6,10 +6,10 @@ module.exports = {
   // server webpack config name
   server: 'server',
   alias: {
-    assets: path.resolve(__dirname, '../src/assets'),
-    client: path.resolve(__dirname, '../src/client'),
-    server: path.resolve(__dirname, '../src/server'),
-    shared: path.resolve(__dirname, '../src/shared'),
-    themes: path.resolve(__dirname, '../src/themes'),
+    assets: path.resolve(__dirname, '../app/assets'),
+    client: path.resolve(__dirname, '../app/client'),
+    server: path.resolve(__dirname, '../app/server'),
+    shared: path.resolve(__dirname, '../app/shared'),
+    themes: path.resolve(__dirname, '../app/themes'),
   },
 };

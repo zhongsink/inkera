@@ -7,9 +7,9 @@
   "scripts": {
     "clean": "rimraf build",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --progress --config ./config/webpack.prod.config.js",
-    "prod": "npm run clean && cross-env NODE_ENV=production PORT=3006 node ./src/production",
-    "dev": "cross-env NODE_ENV=development PORT=3006 node ./src/development",
-    "lint": "./node_modules/.bin/eslint src",
+    "prod": "npm run clean && cross-env NODE_ENV=production PORT=3006 node ./app/production",
+    "dev": "cross-env NODE_ENV=development PORT=3006 node ./app/development",
+    "lint": "./node_modules/.bin/eslint app",
     "test": "./node_modules/.bin/jest --config jest.config.js --no-cache",
     "codecov": "CODECLIMATE_REPO_TOKEN=? codeclimate-test-reporter < coverage/lcov.info"
   },

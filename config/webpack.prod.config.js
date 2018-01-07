@@ -8,7 +8,7 @@ const client = {
   name: commons.client,
   entry: [
     'babel-polyfill',
-    path.resolve(__dirname, '../src/client/index.jsx'),
+    path.resolve(__dirname, '../app/client/index.jsx'),
   ],
   output: {
     path: path.resolve(__dirname, '../build/client'),
@@ -77,7 +77,7 @@ const server = {
   target: 'node',
   entry: [
     'babel-polyfill',
-    path.resolve(__dirname, '../src/server/middlewares'),
+    path.resolve(__dirname, '../app/server/middlewares'),
   ],
   output: {
     path: path.resolve(__dirname, '../build/server'),
