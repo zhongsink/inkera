@@ -1,10 +1,5 @@
 # inkera
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/kimjuny/koa-react-universal.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/kimjuny/koa-react-universal.svg?branch=master)](https://travis-ci.org/kimjuny/koa-react-universal)
-[![Code Climate](https://codeclimate.com/github/kimjuny/koa-react-universal/badges/gpa.svg)](https://codeclimate.com/github/kimjuny/koa-react-universal)
-[![Test Coverage](https://codeclimate.com/github/kimjuny/koa-react-universal/badges/coverage.svg)](https://codeclimate.com/github/kimjuny/koa-react-universal/coverage)
-
 > koa2、react、react-universal-component、koa-webpack-server、async/await、code-splitting、hot-module-replacement、react-router4、redux-thunk
 
 <b>Less is More:</b> All key ingredients are in `src/development`、`src/production` and webpack configurations, easy to understand、set-up and extend. We promise to use the most recent & official packages(as much as we can), no weird or tricky stuffs, keeping this project <b>clean and fully customizable</b>.
@@ -70,8 +65,8 @@ yarn prod
 or with docker
 
 ```
-docker build -t koa-react-universal .
-docker run -d -p 3006:3006 koa-react-universal
+docker build -t inkera .
+docker run -d -p 3006:3006 inkera
 ```
 
 #### Development

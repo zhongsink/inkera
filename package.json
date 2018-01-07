@@ -24,6 +24,7 @@
     "koa-send": "^4.1.0",
     "koa-views": "^6.0.2",
     "lodash": "^4.17.4",
+    "mysql2": "^1.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -33,6 +34,8 @@
     "redis": "^2.8.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "sequelize": "^4.29.0",
+    "sequelize-cli": "^3.2.0",
     "url-parse": "^1.1.9",
     "webpack-flush-chunks": "^1.1.22"
   },
