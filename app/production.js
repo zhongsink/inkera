@@ -2,6 +2,11 @@
 require('colors');
 const webpack = require('webpack');
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+const session = require('koa-generic-session');
+const redisStore = require('koa-redis');
+const convert = require('koa-convert');
+const CSRF = require('koa-csrf');
 const configs = require('../config/webpack.prod.config');
 
 console.log(`${'[SYS]'.rainbow} webpack building...`);
@@ -21,6 +26,27 @@ webpack(configs).run((err, stats) => {
 
   // koa2 middlewares
   app.use(logger);
+  // set the session keys
+  app.keys = [ 'inkera', 'sejnkja757ss' ];
+
+  // add session support
+  app.use(convert(session({
+    store: redisStore()
+  })));
+
+  // add body parsing
+  app.use(bodyParser());
+
+  // add the CSRF middleware
+  app.use(new CSRF({
+    invalidSessionSecretMessage: 'Invalid session secret',
+    invalidSessionSecretStatusCode: 403,
+    invalidTokenMessage: 'Invalid CSRF token',
+    invalidTokenStatusCode: 403,
+    excludedMethods: [ 'GET', 'HEAD', 'OPTIONS' ],
+    disableQuery: false
+  }));
+
   app.use(favicon);
   app.use(statics);
   app.use(views);

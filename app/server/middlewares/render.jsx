@@ -61,10 +61,15 @@ const render = async (ctx) => {
     }
   } catch (error) {
     console.error(`${'[ERR]'.rainbow} SSR %s`, error.message);
-    await ctx.render('500', {
-      message: `<div>message: ${error.message}</div>
-                <div>errors: ${JSON.stringify(error.errors)}</div>`,
-    });
+    if (process.env.NODE_ENV === 'development')
+      await ctx.render('500', {
+        message: `<div>message: ${error.message}</div>
+                  <div>errors: ${JSON.stringify(error.errors)}</div>`,
+      });
+    else
+      await ctx.render('500', {
+        message: 'server error',
+      });
   }
 };
 
