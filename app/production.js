@@ -8,6 +8,7 @@ const redisStore = require('koa-redis');
 const convert = require('koa-convert');
 const CSRF = require('koa-csrf');
 const configs = require('../config/webpack.prod.config');
+const router = require('./server/router');
 
 console.log(`${'[SYS]'.rainbow} webpack building...`);
 
@@ -27,7 +28,7 @@ webpack(configs).run((err, stats) => {
   // koa2 middlewares
   app.use(logger);
   // set the session keys
-  app.keys = [ 'inkera', 'sejnkja757ss' ];
+  app.keys = ['inkera'];
 
   // add session support
   app.use(convert(session({
@@ -50,6 +51,11 @@ webpack(configs).run((err, stats) => {
   app.use(favicon);
   app.use(statics);
   app.use(views);
+
+  app
+  .use(router.routes())
+  .use(router.allowedMethods());
+
   app.use(render);
 
   // start

@@ -9,7 +9,7 @@ const CSRF = require('koa-csrf');
 const webpack = require('webpack');
 const { webpackServer, findCompiler } = require('koa-webpack-server');
 const configs = require('../config/webpack.dev.config');
-
+const router = require('./server/router');
 const app = new Koa();
 const compilers = webpack(configs);
 const clientCompiler = findCompiler(compilers, 'client');
@@ -34,7 +34,7 @@ webpackServer(app, options).then(({ middlewares }) => {
   //   they will automatically hot patched, so you don't have to restart node.
   app.use(logger);
     // set the session keys
-  app.keys = [ 'inkera', 'sejnkja757ss' ];
+  app.keys = [ 'inkera'];
 
   // add session support, store on redis
   app.use(convert(session({
@@ -56,6 +56,11 @@ webpackServer(app, options).then(({ middlewares }) => {
 
   app.use(favicon);
   app.use(views);
+
+  app
+  .use(router.routes())
+  .use(router.allowedMethods());
+
   app.use(render);
 
   app.listen(process.env.PORT, () => {
