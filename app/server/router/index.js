@@ -1,14 +1,10 @@
 // api
 const Router = require('koa-router');
-
+const userController = require('../controllers/userController');
 let router = new Router();
 
-router.post('/signup', (ctx, next) => {
-  
-});
-router.post('/login', (ctx, next) => {
-  
-});
+router.post('/signup', userController.SignUp);
+router.post('/login', userController.Login);
 
 
 module.exports = router
