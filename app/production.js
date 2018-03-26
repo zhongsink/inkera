@@ -22,7 +22,7 @@ webpack(configs).run((err, stats) => {
   });
 
   const {
-    logger, favicon, statics, views, render,
+    logger, statics,publicStatics, views, render,
   } = require('../build/server/server');
 
   // koa2 middlewares
@@ -48,7 +48,7 @@ webpack(configs).run((err, stats) => {
     disableQuery: false
   }));
 
-  app.use(favicon);
+  app.use(publicStatics);
   app.use(statics);
   app.use(views);
 

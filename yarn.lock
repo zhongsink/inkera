@@ -63,6 +63,10 @@ ajv-keywords@^2.0.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-2.1.0.tgz#a296e17f7bfae7c1ce4f7e0de53d29cb32162df0"
 
+ajv-keywords@^3.1.0:
+  version "3.1.0"
+  resolved "http://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-3.1.0.tgz#ac2b27939c543e95d2c06e7f7f5c27be4aa543be"
+
 ajv@4.11.2, ajv@^4.9.1:
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.2.tgz#f166c3c11cbc6cb9dcc102a5bcfe5b72c95287e6"
@@ -85,6 +89,15 @@ ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0:
     fast-deep-equal "^1.0.0"
     json-schema-traverse "^0.3.0"
     json-stable-stringify "^1.0.1"
+
+ajv@^6.1.0:
+  version "6.4.0"
+  resolved "http://registry.npm.taobao.org/ajv/download/ajv-6.4.0.tgz#d3aff78e9277549771daf0164cff48482b754fc6"
+  dependencies:
+    fast-deep-equal "^1.0.0"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.3.0"
+    uri-js "^3.0.2"
 
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
@@ -2578,6 +2591,10 @@ fast-deep-equal@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/fast-deep-equal/download/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
 
+fast-json-stable-stringify@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/fast-json-stable-stringify/download/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
+
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
@@ -3846,12 +3863,6 @@ koa-csrf@^3.0.6:
   dependencies:
     csrf "^3.0.3"
 
-koa-favicon@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/koa-favicon/-/koa-favicon-2.0.0.tgz#1c4e5023e71fcbfa64c59def00ae10e6942e5a6e"
-  dependencies:
-    mz "^2.0.0"
-
 koa-generic-session@^2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/koa-generic-session/download/koa-generic-session-2.0.1.tgz#d6bdf4f288b2f553065d049a630c28c76d877ccf"
@@ -4202,6 +4213,10 @@ mime@^1.2.11, mime@^1.3.4:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.6.tgz#591d84d3653a6b0b4a3b9df8de5aa8108e72e5e0"
 
+mime@^2.0.3:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/mime/download/mime-2.2.0.tgz#161e541965551d3b549fa1114391e3a3d55b923b"
+
 mimic-fn@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/mimic-fn/download/mimic-fn-1.1.0.tgz#e667783d92e89dbd342818b5230b9d62a672ad18"
@@ -4279,7 +4294,7 @@ mysql2@^1.5.1:
     seq-queue "0.0.5"
     sqlstring "^2.2.0"
 
-mz@^2.0.0, mz@^2.4.0, mz@^2.6.0:
+mz@^2.4.0, mz@^2.6.0:
   version "2.6.0"
   resolved "http://registry.npm.taobao.org/mz/download/mz-2.6.0.tgz#c8b8521d958df0a4f2768025db69c719ee4ef1ce"
   dependencies:
@@ -5060,6 +5075,10 @@ punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "http://registry.npm.taobao.org/punycode/download/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+punycode@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/punycode/download/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
+
 q@^1.1.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
@@ -5597,6 +5616,13 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   dependencies:
     ajv "^5.0.0"
+
+schema-utils@^0.4.3:
+  version "0.4.5"
+  resolved "http://registry.npm.taobao.org/schema-utils/download/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
 
 "semver@2 || 3 || 4 || 5", semver@^5.3.0:
   version "5.4.1"
@@ -6200,9 +6226,23 @@ unpipe@1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
+uri-js@^3.0.2:
+  version "3.0.2"
+  resolved "http://registry.npm.taobao.org/uri-js/download/uri-js-3.0.2.tgz#f90b858507f81dea4dcfbb3c4c3dbfa2b557faaa"
+  dependencies:
+    punycode "^2.1.0"
+
 urijs@^1.19.0:
   version "1.19.1"
   resolved "http://registry.npm.taobao.org/urijs/download/urijs-1.19.1.tgz#5b0ff530c0cbde8386f6342235ba5ca6e995d25a"
+
+url-loader@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/url-loader/download/url-loader-1.0.1.tgz#61bc53f1f184d7343da2728a1289ef8722ea45ee"
+  dependencies:
+    loader-utils "^1.1.0"
+    mime "^2.0.3"
+    schema-utils "^0.4.3"
 
 url-parse@^1.1.9:
   version "1.1.9"

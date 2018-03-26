@@ -40,9 +40,17 @@ const client = {
           ],
         }),
       }, {
-        test: /\.svg$/,
+        test: /\.(png|jpg|gif|svg)$/,
         exclude: /node_modules/,
-        loader: 'file-loader',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              mimetype: '[name]-[hash:base64:5].[ext]'
+            }
+          }
+        ]
       },
     ],
   },
@@ -94,7 +102,7 @@ const server = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
       }, {
-        test: /\.(css|less|svg)$/,
+        test: /\.(css|less|svg|png|jpg|jpeg)$/,
         loader: 'ignore-loader',
       },
     ],

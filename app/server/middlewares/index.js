@@ -3,9 +3,9 @@
 
 export const logger = require('./logger').default;
 
-export const favicon = require('./favicon').default;
-
 export const statics = require('./statics')(`${__ROOT__}/build`, { prefix: '/build' });
+
+export const publicStatics = require('./statics')(`${__ROOT__}/public`, { prefix: '/public' });
 
 export const views = require('./views').default;
 

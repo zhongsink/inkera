@@ -1,10 +1,12 @@
 
 .navigator {
-  background-color: #24292e;
-  height: 4em;
+  background: #fff;
+  border-bottom: 1px solid #f1f1f1;
+  color: #909090;
+  height: 5rem;
 
   .content {
-    width: 60%;
+    max-width: 960px;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -12,19 +14,24 @@
     align-items: center;
 
     .icon {
-      height: 32px;
-      width: 32px;
+      height: 40px;
+      width: 123px;
+      margin-right: 2rem;
     }
 
     .search {
       margin: 0 1em;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .navigation-items {
-
+      font-size: 1.33rem;
       a {
-        color: rgba(255, 255, 255, 0.75);
-        margin: 0 0.6em;
+        display: inline-block;
+        color: #71777c;
+        padding: 0 20px;
+        cursor: pointer;
         font-weight: 600;
       }
     }

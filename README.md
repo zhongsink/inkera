@@ -81,15 +81,13 @@ yarn dev
 yarn test
 ```
 
-also supports [wallaby.js](https://wallabyjs.com/) live test reports [view](http://wallabyjs.com/app/#/files)
-
 ```
 CMD + SHIFT + R -> R (vscode)
 ```
 
 ### License
 
-fork from https://github.com/kimjuny/koa-react-universal
+Base on https://github.com/kimjuny/koa-react-universal
 
 ### Contributing
 

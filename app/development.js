@@ -28,7 +28,7 @@ console.log(`${'[SYS]'.rainbow} webpack building...`);
 
 // koa-webpack-server: https://github.com/kimjuny/koa-webpack-server
 webpackServer(app, options).then(({ middlewares }) => {
-  const { logger, favicon, views, render } = middlewares;
+  const { logger,publicStatics, views, render } = middlewares;
 
   // koa2 hot middlewares: once any changes have made to these middlewares,
   //   they will automatically hot patched, so you don't have to restart node.
@@ -54,7 +54,7 @@ webpackServer(app, options).then(({ middlewares }) => {
     disableQuery: false
   }));
 
-  app.use(favicon);
+  app.use(publicStatics);
   app.use(views);
 
   app

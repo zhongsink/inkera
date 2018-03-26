@@ -45,9 +45,17 @@ const client = {
           ],
         }),
       }, {
-        test: /\.svg$/,
+        test: /\.(png|jpg|gif|svg)$/,
         exclude: /node_modules/,
-        loader: 'file-loader',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              mimetype: '[name].[ext]',
+            }
+          }
+        ]
       },
     ],
   },
@@ -97,7 +105,7 @@ const server = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
       }, {
-        test: /\.(less|css|svg)$/,
+        test: /\.(css|less|svg|png|jpg|jpeg)$/,
         loader: 'ignore-loader',
       },
     ],

@@ -12,8 +12,7 @@
     "migrate": "node_modules/.bin/sequelize db:migrate",
     "seeder": "node_modules/.bin/sequelize db:seed:all",
     "lint": "./node_modules/.bin/eslint app",
-    "test": "./node_modules/.bin/jest --config jest.config.js --no-cache",
-    "codecov": "CODECLIMATE_REPO_TOKEN=? codeclimate-test-reporter < coverage/lcov.info"
+    "test": "./node_modules/.bin/jest --config jest.config.js --no-cache"
   },
   "dependencies": {
     "axios": "^0.17.0",
@@ -25,7 +24,6 @@
     "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
     "koa-csrf": "^3.0.6",
-    "koa-favicon": "^2.0.0",
     "koa-generic-session": "^2.0.1",
     "koa-redis": "^3.1.1",
     "koa-router": "^7.3.0",
@@ -80,6 +78,7 @@
     "react-hot-loader": "next",
     "react-test-renderer": "^15.6.1",
     "rimraf": "^2.6.1",
+    "url-loader": "^1.0.1",
     "webpack": "^3.5.3"
   },
   "jest": {}
