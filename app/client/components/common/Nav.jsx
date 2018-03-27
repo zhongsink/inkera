@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Dropdown, Icon } from 'antd';
+import PCNav from './PcNav';
+import MobileNav from './MobileNav';
 
 class Nav extends PureComponent {
   constructor() {
@@ -12,33 +14,17 @@ class Nav extends PureComponent {
     console.log('click ', e);
   }
   render() {
+    const nav = {
+      home: '首页',
+      question: '问答',
+      recruit: '招聘',
+      about: '关于'
+    }
     return (
-      <Menu
-        onClick={this.handleClick}
-        mode="horizontal"
-        selectedKeys={[this.props.current]}
-        style={{lineHeight: '58px'}}>
-        <Menu.Item key="home">
-          <Link to="/">
-            首页
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="question">
-          <Link to="/question">
-            问答
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="recruit">
-          <Link to="/recruit">
-            招聘
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="about">
-          <Link to="/about">
-            关于
-          </Link>
-        </Menu.Item>
-      </Menu>
+      <div className="nav">
+        <PCNav current={this.props.current}/>
+        <MobileNav current={this.props.current} currentNav={nav[`${this.props.current}`]}/>
+      </div>
     )
   }
 }

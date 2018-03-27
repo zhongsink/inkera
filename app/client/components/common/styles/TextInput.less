@@ -1,34 +1,29 @@
 @import "~themes/default.less";
 
 .text-input {
-  line-height: 20px;
-  border-style: solid;
-  padding: 0 10px 0 10px;
+  line-height: 30px;
+  padding: 0px 0 0 10px;
+  border: 1px solid #d9d9d9;
+  font-size: 1.2rem;
+  color: #d9d9d9;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   outline: none;
 }
-
-.text-input-lg {
-  height: 40px;
-  width: 28rem;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.text-input-sm {
-  height: 30px;
-  width: 12rem;
-  font-size: 14px;
-  border-radius: 3px;
-}
-
-.text-input-white {
-  background-color: white;
-  border-color: #d1d5da;
-  color: #24292e;
-}
-
-.text-input-dark {
-  background-color: #3f4448;
-  border: 0;
-  color: white;
+.user-bar {
+  .ant-input-group-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    &:hover {
+      .text-input, .ant-btn {
+        border-color: rgb(64, 169, 255);
+      }
+    }
+  }
+  .ant-btn {
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+  }
 }

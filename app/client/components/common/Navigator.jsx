@@ -40,19 +40,17 @@ class Navigator extends React.Component {
   render() {
     return (
       <div className="navigator">
-        <div className="content">
+        <div className="countainer">
           <Link className="icon" to="/">
             <img src="/public/img/logo.png" alt="jscode logo"/>
           </Link>
           <Nav current={this.props.current}></Nav>
-          <div className="search">
+          <div className="user-bar">
             <TextInput
               value={this.state.value}
               onChange={this.onChange}
               onEnter={this.onEnter}
-              size="sm"
-              theme="white"
-              placeholder="Search Github"
+              placeholder="搜索一下..."
             />
           </div>
         </div>

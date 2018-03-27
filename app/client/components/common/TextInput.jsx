@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import { Button } from 'antd'
 import './styles/TextInput.less';
 
 class TextInput extends PureComponent {
@@ -24,26 +25,25 @@ class TextInput extends PureComponent {
   }
 
   render() {
-    const { placeholder, value, size, theme } = this.props;
+    const { placeholder, value } = this.props;
 
     const className = classNames({
-      'text-input': true,
-      'text-input-lg': !size || size === 'lg',
-      'text-input-sm': size === 'sm',
-      'text-input-white': !theme || theme === 'white',
-      'text-input-dark': theme === 'dark',
+      'text-input': true
     });
 
     return (
-      <div>
-        <input
-          type="text"
-          className={className}
-          placeholder={placeholder}
-          value={value}
-          onChange={this.onChange}
-          onKeyPress={this.onKeyPress}
-        />
+      <div className="search">
+        <div className="ant-input-group-wrap">
+          <input
+            type="text"
+            className={className}
+            placeholder={placeholder}
+            value={value}
+            onChange={this.onChange}
+            onKeyPress={this.onKeyPress}
+          />
+          <Button icon="search" className="ant-search-btn" onClick={this.props.onEnter} />
+        </div>
       </div>
     );
   }
