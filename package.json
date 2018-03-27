@@ -15,7 +15,9 @@
     "test": "./node_modules/.bin/jest --config jest.config.js --no-cache"
   },
   "dependencies": {
+    "antd": "^3.3.3",
     "axios": "^0.17.0",
+    "babel-plugin-import": "^1.6.7",
     "classnames": "^2.2.5",
     "colors": "^1.1.2",
     "ejs": "^2.5.7",

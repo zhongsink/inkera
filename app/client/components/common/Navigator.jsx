@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextInput from './TextInput';
+import Nav from './Nav';
 import { listRepositories } from '../../models/actions/repository';
 import { objectToQueryString } from '../../../shared/utils/url';
 import './styles/Navigator.less';
@@ -43,12 +44,7 @@ class Navigator extends React.Component {
           <Link className="icon" to="/">
             <img src="/public/img/logo.png" alt="jscode logo"/>
           </Link>
-          <div className="navigation-items">
-            <a>首页</a>
-            <a>问答</a>
-            <a>招聘</a>
-            <a>关于</a>
-          </div>
+          <Nav current={this.props.current}></Nav>
           <div className="search">
             <TextInput
               value={this.state.value}

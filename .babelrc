@@ -6,7 +6,11 @@
   ],
   "plugins": [
     "transform-async-to-generator",
-    "universal-import"
+    "universal-import",
+    ["import", {
+      "libraryName": "antd",
+      "style": true
+    }]
   ],
   "env": {
     "development": {

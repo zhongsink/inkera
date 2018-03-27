@@ -34,17 +34,10 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <div className="main code-lines">
-          <Navigator />
+        <div className="main">
+          <Navigator current="home"/>
           <div className="center">
-            <div className="search-area">
-              <TextInput
-                value={this.state.search}
-                onChange={this.onChange}
-                onEnter={this.onEnter}
-                placeholder="Search Github Repositories (i.e. webpack、react...)"
-              />
-            </div>
+            test
           </div>
         </div>
       </div>
