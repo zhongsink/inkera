@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navigator from '../components/common/Navigator';
+import Footer from '../components/common/Footer';
 import './styles/Home.less';
 
 class Question extends React.Component {
@@ -11,13 +12,12 @@ class Question extends React.Component {
   }
   render() {
     return (
-      <div className="home">
-        <div className="main">
-          <Navigator current='question'/>
-          <div className="center">
-            Question
-          </div>
+      <div className="main">
+        <Navigator current='question'/>
+        <div className="center">
+          Question
         </div>
+        <Footer />
       </div>
     )
   }

@@ -5,6 +5,7 @@ import Navigator from '../components/common/Navigator';
 import Tabs from '../components/repository/Tabs';
 import Main from '../components/repository/Main';
 import { parse } from '../../shared/utils/url';
+import Footer from '../components/common/Footer';
 import './styles/Repository.less';
 
 class Repository extends React.Component {
@@ -23,6 +24,7 @@ class Repository extends React.Component {
         <Navigator />
         <Tabs />
         <Main />
+        <Footer />
       </div>
     );
   }

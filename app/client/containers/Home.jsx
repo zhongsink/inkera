@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Navigator from '../components/common/Navigator';
-import TextInput from '../components/common/TextInput';
+import Footer from '../components/common/Footer';
 import './styles/Home.less';
 
 class Home extends React.Component {
@@ -33,13 +33,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home">
-        <div className="main">
-          <Navigator current="home"/>
-          <div className="center">
-            test
-          </div>
+      <div className="main">
+        <Navigator current="home"/>
+        <div className="center">
+          test
         </div>
+        <Footer />
       </div>
     );
   }
