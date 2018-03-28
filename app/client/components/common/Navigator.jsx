@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextInput from './TextInput';
 import Nav from './Nav';
+import UserBar from './UserBar';
 import { listRepositories } from '../../models/actions/repository';
 import { objectToQueryString } from '../../../shared/utils/url';
 import './styles/Navigator.less';
@@ -52,6 +53,7 @@ class Navigator extends React.Component {
               onEnter={this.onEnter}
               placeholder="搜索一下..."
             />
+            <UserBar user={{name:"inkera", login: false}}/>
           </div>
         </div>
       </div>
