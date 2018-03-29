@@ -1,0 +1,75 @@
+@import "~themes/default.less";
+.auth-section .form-header {
+    display: flex;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    .right {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.2rem;
+        a {
+            padding-left: 0.3rem;
+        }
+    }
+}
+
+.more-login-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .jscode-other-login-method {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        .line {
+            width: 100px;
+            border: 1px solid rgb(244, 245, 245);
+        }
+        span {
+            padding: 0 20px;
+        }
+    }
+    .jscode-third-login {
+        .anticon-github {
+            font-size: 32px;
+            margin:1rem;
+        }
+    }
+}
+
+@media (min-width: 980px) {
+    .auth-section {
+        width: 960px;
+        display: flex;
+        .auth-form {
+            border-radius: 6px;
+            width: 500px;
+            margin: 30px 112px;
+            padding: 20px;
+            background-color: #fff;
+        }
+    }
+}
+
+@media (max-width: 980px) {
+    .auth-section {
+        width: 100%;
+        display: flex;
+        .auth-form {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+        }
+        .ant-form-item-label {
+            padding: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}

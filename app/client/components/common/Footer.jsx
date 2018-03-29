@@ -11,7 +11,7 @@ class Footer extends PureComponent {
       <div className="footer">
         <Row>
           <Col span={6}>
-            <h2>GitHub</h2>
+            <h3>GitHub</h3>
             <div>
               <a target="_blank " href="https://github.com/zhongsink/inkera">仓库</a>
             </div>
@@ -20,7 +20,7 @@ class Footer extends PureComponent {
             </div>
           </Col>
           <Col span={6}>
-            <h2>相关站点</h2>
+            <h3>相关站点</h3>
             <div>
               <a target="_blank " href="http://inkera.cn">个人主页</a>
             </div>
@@ -29,7 +29,7 @@ class Footer extends PureComponent {
             </div>
           </Col>
           <Col span={6}>
-          <h2>社区</h2>
+          <h3>社区</h3>
             <div>
               <a target="_blank " href="https://cnodejs.org/">Cnode</a>
             </div>

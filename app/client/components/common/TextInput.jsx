@@ -33,7 +33,7 @@ class TextInput extends PureComponent {
 
     return (
       <div className="search">
-        <div className="ant-input-group-wrap">
+        <div className="input-group-wrap">
           <input
             type="text"
             className={className}

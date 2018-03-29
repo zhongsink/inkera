@@ -45,7 +45,7 @@ class Navigator extends React.Component {
           <Link className="icon" to="/">
             <img src="/public/img/logo.png" alt="jscode logo"/>
           </Link>
-          <Nav current={this.props.current}></Nav>
+          <Nav current={this.props.current || ''}></Nav>
           <div className="user-bar">
             <TextInput
               value={this.state.value}

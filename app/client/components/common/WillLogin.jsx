@@ -1,23 +1,16 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 class WillLogin extends PureComponent {
   constructor(){
     super()
-    this.login = this.login.bind(this);
-    this.register = this.register.bind(this);
-  }
-  login(e) {
-    console.log(e)
-  }
-  register(e) {
-    console.log(e)
   }
   render() {
     const user = this.props.user;
     return (
       <div className="unlogin">
-        <span className="login" onClick={this.login}>登录</span>
-        <span className="register" onClick={this.register}>注册</span>
+        <Link className="login" to="/login">登录</Link>
+        <Link className="register" to="/register">注册</Link>
       </div>
     )
   }

@@ -31,6 +31,18 @@ export const routes = [
     component: universal(import('../containers/About')),
   },
   {
+    key: 'login',
+    path: '/login',
+    exact: true,
+    component: universal(import('../containers/Login')),
+  },
+  {
+    key: 'register',
+    path: '/register',
+    exact: true,
+    component: universal(import('../containers/Register')),
+  },
+  {
     key: 'repositories',
     path: '/repositories',
     component: universal(import('../containers/Repository')),
