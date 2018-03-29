@@ -39,7 +39,6 @@ class Footer extends PureComponent {
           </Col>
           <Col span={6}>
             <p> ©2018 inkera 体验技术部出品 </p>
-            <p> Powered by inkera </p>
           </Col>
         </Row>
       </div>

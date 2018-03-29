@@ -45,7 +45,7 @@ class MobileNav extends PureComponent {
     return (
       <Dropdown overlay={menu} trigger={['click']}>
         <div className="mobile-nav ant-dropdown-link">
-          {this.props.currentNav}
+          {this.props.currentNav || '首页'}
           <Icon type="down" />
         </div>
       </Dropdown>

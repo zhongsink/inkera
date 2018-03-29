@@ -58,7 +58,6 @@ class RegisterForm extends PureComponent {
 
   render() {
     const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;
-    console.log(this.props.form)
     const nameProps = getFieldProps('name', {
       rules: [
         { required: true, min: 5, message: '昵称至少为 5 个字符' },

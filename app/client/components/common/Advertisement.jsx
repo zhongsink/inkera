@@ -16,7 +16,7 @@ class Advertisement extends PureComponent {
     }
     return (
       <div className="ad-banner">
-        <a href={url} title={title}>
+        <a href={url} title={title} target="_blank">
           <div className="advertisement" style={style}></div>
         </a>
         <div className="ad-ctrl">
