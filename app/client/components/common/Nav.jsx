@@ -17,8 +17,7 @@ class Nav extends PureComponent {
     const nav = {
       home: '首页',
       question: '问答',
-      recruit: '招聘',
-      about: '关于'
+      recruit: '招聘'
     }
     return (
       <div className="nav">

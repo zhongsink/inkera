@@ -25,12 +25,6 @@ export const routes = [
     component: universal(import('../containers/Recruit')),
   },
   {
-    key: 'about',
-    path: '/about',
-    exact: true,
-    component: universal(import('../containers/About')),
-  },
-  {
     key: 'login',
     path: '/login',
     exact: true,

@@ -33,13 +33,6 @@ class MobileNav extends PureComponent {
             招聘
           </Link>
         </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="about">
-          <Icon type="info-circle-o" />
-          <Link to="/about">
-            关于
-          </Link>
-        </Menu.Item>
       </Menu>
     )
     return (

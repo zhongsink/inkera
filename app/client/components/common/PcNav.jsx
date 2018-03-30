@@ -28,11 +28,6 @@ class PCNav extends PureComponent {
             招聘
           </Link>
         </Menu.Item>
-        <Menu.Item key="about">
-          <Link to="/about">
-            关于
-          </Link>
-        </Menu.Item>
       </Menu>
     )
   }
