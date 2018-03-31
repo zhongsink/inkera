@@ -1,14 +1,20 @@
 const Models = require('../models');
 const Logger = require('../utils/Logger');
+const md5 = require('../utils/md5')
 async function Login(ctx) {
   try {
     let body  = ctx.request.body;
-    let params = { where: {email: body.email, password: body.password}}
+    let params = { where: {email: body.email, encrypted_password: md5(body.password)}}
     let user = await Models.User.findOne(params);
-    if (user) throw new error('email or password error');
+    if (!user) throw new error('email or password error');
+    ctx.cookies.set('inkera-user-id', user.authentication_token);
     ctx.body = {
-      status: 1,
-      message: '登录成功'
+      status: true,
+      message: {
+        name: user.name,
+        usename: user.usename,
+        email: user.email
+      }
     };
     ctx.status = 200;
   } catch(e) {
@@ -24,17 +30,23 @@ async function Login(ctx) {
 async function SignUp(ctx) {
   try {
     let body  = ctx.request.body;
+    let token = md5(+new Date()+'');
     let params = {
       name: body.name,
       usename: body.usename,
       email: body.email,
-      encrypted_password: body.password,
-      authentication_token: body.password
+      encrypted_password: md5(body.password),
+      authentication_token: token
     }
     await Models.User.create(params);
+    ctx.cookies.set('inkera-user-id', token);
     ctx.body = {
       status: true,
-      message: 'success'
+      message: {
+        name: body.name,
+        usename: body.usename,
+        email: body.email
+      }
     };
     ctx.status = 200;
   } catch (e){
