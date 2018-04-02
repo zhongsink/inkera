@@ -2,7 +2,7 @@ const Models = require('../models');
 const Logger = require('../utils/Logger');
 
 async function getAllRecruit(ctx) {
-  let page = ctx.params.page || 1;
+  let page = ctx.query.page || 1;
   try {
     let recruits = await Models.Recruit.findAll({
       offset: 20 * (page - 1),
@@ -92,11 +92,11 @@ async function addRecruit(ctx) {
  * }
  */
 async function delRecruit(ctx) {
-  let body = ctx.request.body;
+  let params = ctx.query;
   try {
     await Models.Recruit.destroy({
       where: {
-        id: body.id
+        id: params.id
       }
     })
     ctx.body = {

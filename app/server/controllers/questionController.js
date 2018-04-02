@@ -2,9 +2,12 @@ const Models = require('../models');
 const Logger = require('../utils/Logger');
 
 async function getAllQuestion(ctx) {
-  let page = ctx.params.page || 1;
+  let page = ctx.query.page || 1;
   try {
-    let questions = await Models.Question.findAll({ offset: 20*(page-1), limit: 20 });
+    let questions = await Models.Question.findAll({
+      offset: 20 * (page - 1),
+      limit: 20
+    });
     ctx.body = {
       status: true,
       list: questions
@@ -24,9 +27,13 @@ async function getAllQuestion(ctx) {
  * ctx.body ={ id: number }
  */
 async function getAnQuestion(ctx) {
-  let body = ctx.request.body;
+  let params = ctx.query;
   try {
-    let question = await Models.Question.findOne({ where: { id: body.id } });
+    let question = await Models.Question.findOne({
+      where: {
+        id: params.id
+      }
+    });
     ctx.body = {
       status: true,
       list: question
@@ -51,7 +58,7 @@ async function getAnQuestion(ctx) {
  * }
  */
 async function addQuestion(ctx) {
-  let body  = ctx.request.body;
+  let body = ctx.request.body;
   let params = {
     title: body.title,
     content: body.content,
@@ -83,7 +90,7 @@ async function addQuestion(ctx) {
  * }
  */
 async function delQuestion(ctx) {
-  let body  = ctx.request.body;
+  let body = ctx.request.body;
   try {
     await Models.Question.destroy({
       where: {
@@ -110,5 +117,5 @@ let question = {
   addQuestion,
   delQuestion
 }
-  
+
 module.exports = question

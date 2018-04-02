@@ -2,9 +2,12 @@ const Models = require('../models');
 const Logger = require('../utils/Logger');
 
 async function getAllArtcle(ctx) {
-  let page = ctx.params.page || 1;
+  let page = ctx.query.page || 1;
   try {
-    let articles = await Models.Article.findAll({ offset: 20*(page-1), limit: 20 });
+    let articles = await Models.Article.findAll({
+      offset: 20 * (page - 1),
+      limit: 20
+    });
     ctx.body = {
       status: true,
       list: articles
@@ -30,7 +33,7 @@ async function getAllArtcle(ctx) {
  * }
  */
 async function addArtcle(ctx) {
-  let body  = ctx.request.body;
+  let body = ctx.request.body;
   let params = {
     title: body.title,
     content: body.content,
@@ -61,11 +64,11 @@ async function addArtcle(ctx) {
  * ctx.body ={ id: number }
  */
 async function getAnArticle(ctx) {
-  let body = ctx.request.body;
+  let params = ctx.query;
   try {
     let article = await Models.Article.findOne({
       where: {
-        id: body.id
+        id: params.id
       }
     });
     ctx.body = {
@@ -90,7 +93,7 @@ async function getAnArticle(ctx) {
  * }
  */
 async function delArtcle(ctx) {
-  let body  = ctx.request.body;
+  let body = ctx.request.body;
   try {
     await Models.Article.destroy({
       where: {
@@ -119,16 +122,21 @@ async function delArtcle(ctx) {
  * }
  */
 async function updateArtcle(ctx) {
-  let body  = ctx.request.body;;
+  let body = ctx.request.body;;
   try {
     await Models.Article.update({
       content: body.content
+    }, {
+      where: {
+        id: body.id
+      }
     });
     ctx.body = {
       status: true,
       message: '更新成功'
     }
   } catch (error) {
+    Logger.error(`update artcle: ${error.message}`)
     ctx.body = {
       status: false,
       message: '更新失败'
@@ -144,5 +152,5 @@ let article = {
   delArtcle,
   updateArtcle
 }
-  
+
 module.exports = article
