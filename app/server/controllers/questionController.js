@@ -3,14 +3,33 @@ const Logger = require('../utils/Logger');
 
 async function getAllQuestion(ctx) {
   let page = ctx.query.page || 1;
+  let result = [];
   try {
     let questions = await Models.Question.findAll({
       offset: 20 * (page - 1),
-      limit: 20
+      limit: 20,
+      order: [['id', 'DESC']]
     });
+    for(let question of questions) {
+      user = await Models.User.findOne({
+        where: {
+          id: question.UserId
+        }
+      })
+      result.push({
+        question,
+        user:{
+          id: user.id,
+          name: user.name,
+          username: user.usename,
+          portrait: user.portrait,
+          authentication_token: user.authentication_token
+        }
+      });
+    }
     ctx.body = {
       status: true,
-      list: questions
+      list: result
     }
   } catch (error) {
     Logger.error(`find questions:${error.message}`);

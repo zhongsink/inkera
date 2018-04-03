@@ -7,7 +7,8 @@ async function getAllArtcle(ctx) {
   try {
     let articles = await Models.Article.findAll({
       offset: 20 * (page - 1),
-      limit: 20
+      limit: 20,
+      order: [['id', 'DESC']]
     });
     for(let article of articles) {
       user = await Models.User.findOne({
