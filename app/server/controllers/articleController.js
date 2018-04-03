@@ -3,14 +3,32 @@ const Logger = require('../utils/Logger');
 
 async function getAllArtcle(ctx) {
   let page = ctx.query.page || 1;
+  let result = [];
   try {
     let articles = await Models.Article.findAll({
       offset: 20 * (page - 1),
       limit: 20
     });
+    for(let article of articles) {
+      user = await Models.User.findOne({
+        where: {
+          id: article.UserId
+        }
+      })
+      result.push({
+        article,
+        user:{
+          id: user.id,
+          name: user.name,
+          username: user.usename,
+          portrait: user.portrait,
+          authentication_token: user.authentication_token
+        }
+      });
+    }
     ctx.body = {
       status: true,
-      list: articles
+      list: result
     }
   } catch (error) {
     Logger.error(`find articles:${error.message}`);
