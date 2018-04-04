@@ -12,6 +12,11 @@ class Register extends React.Component {
     constructor() {
       super();
     }
+
+    redirectTo(str) {
+      this.props.history.push(str);
+    }
+
     render() {
       const adv = {
         title: 'TensorFlow 官方文档中文版 V1.7',
@@ -31,7 +36,7 @@ class Register extends React.Component {
                     <Link className="login" to="/login">登录</Link>
                   </div>
                 </div>
-                <RegisterForm />
+                <RegisterForm redirectTo={this.redirectTo.bind(this)}/>
               </div>
               <div className="aside">
                 <Advertisement Ad={adv}/>

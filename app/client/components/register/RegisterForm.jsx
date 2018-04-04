@@ -1,5 +1,8 @@
 import React, {PureComponent} from 'react';
 import { Button, Form, Input } from 'antd';
+import { connect } from 'react-redux';
+import { userSignup } from '../../models/actions/user';
+
 const createForm = Form.create;
 const FormItem = Form.Item;
 
@@ -8,6 +11,24 @@ function noop() {
 }
 
 class RegisterForm extends PureComponent {
+  constructor() {
+    super();
+  }
+
+  redirectToHome() {
+    let { user } = this.props;
+    if(user.login) {
+      this.props.redirectTo('/')
+    }
+  }
+
+  componentWillMount() {
+    this.redirectToHome();
+  }
+  componentWillUpdate() {
+    this.redirectToHome();
+  }
+
   handleReset(e) {
     e.preventDefault();
     this.props.form.resetFields();
@@ -20,8 +41,16 @@ class RegisterForm extends PureComponent {
         console.log('Errors in form!!!');
         return;
       }
-      console.log('Submit!!!');
-      console.log(values);
+      const { dispatch } = this.props;
+      let token = document.querySelector("meta[name=csrf-token]").content
+      dispatch(userSignup({
+        _csrf:token,
+        name: values.name,
+        username: values.username,
+        email: values.email,
+        password: values.passwd
+      }));
+      // location.href = '/'
     });
   }
 
@@ -80,7 +109,7 @@ class RegisterForm extends PureComponent {
         rules: [
           { type: 'email', message: '请输入正确的邮箱地址' },
         ],
-        trigger: ['onBlur', 'onChange'],
+        trigger: ['onBlur'],
       }],
     });
     const passwdProps = getFieldProps('passwd', {
@@ -161,4 +190,5 @@ class RegisterForm extends PureComponent {
 
 RegisterForm = createForm()(RegisterForm);
 
-export default RegisterForm
+const mapStateToProps = state => ({ user: state.user });
+export default connect(mapStateToProps)(RegisterForm);
