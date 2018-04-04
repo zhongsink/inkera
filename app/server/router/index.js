@@ -8,6 +8,8 @@ let router = new Router();
 
 router.post('/signup', userController.SignUp);
 router.post('/login', userController.Login);
+router.get('/currentuser', userController.getCurrentUser);
+
 
 router.get('/article/list',articleController.getAllArtcle);
 router.post('/article/add',articleController.addArtcle);

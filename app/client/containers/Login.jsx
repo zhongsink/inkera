@@ -12,6 +12,9 @@ class Login extends React.Component {
     constructor() {
       super();
     }
+    redirectTo(str) {
+      this.props.history.push(str);
+    }
     render() {
       const adv = {
         title: 'TensorFlow 官方文档中文版 V1.7',
@@ -31,7 +34,7 @@ class Login extends React.Component {
                     <Link className="login" to="/register">注册</Link>
                   </div>
                 </div>
-                <LoginForm />
+                <LoginForm redirectTo={this.redirectTo.bind(this)}/>
                 <div className="more-login-action">
                   <div className="jscode-other-login-method">
                     <div className="line"></div>

@@ -1,5 +1,8 @@
 import React, {PureComponent} from 'react';
 import { Button, Form, Input } from 'antd';
+import { connect } from 'react-redux';
+import { userLogin } from '../../models/actions/user';
+
 const createForm = Form.create;
 const FormItem = Form.Item;
 
@@ -7,7 +10,25 @@ function noop() {
   return false;
 }
 
-class LoginForm extends PureComponent {
+class LoginForm extends React.Component {
+  constructor() {
+    super();
+  }
+
+  redirectToHome() {
+    let { user } = this.props;
+    if(user.login) {
+      this.props.redirectTo('/')
+    }
+  }
+
+  componentWillMount() {
+    this.redirectToHome();
+  }
+  componentWillUpdate() {
+    this.redirectToHome();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((errors, values) => {
@@ -15,8 +36,14 @@ class LoginForm extends PureComponent {
         console.log('Errors in form!!!');
         return;
       }
-      console.log('Submit!!!');
-      console.log(values);
+      const { dispatch } = this.props;
+      let token = document.querySelector("meta[name=csrf-token]").content
+      dispatch(userLogin({
+        _csrf:token,
+        email: values.email,
+        password: values.passwd
+      }));
+      location.href = '/'
     });
   }
 
@@ -29,18 +56,14 @@ class LoginForm extends PureComponent {
   }
 
   render() {
+    let { user } = this.props;
     const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;
     const emailProps = getFieldProps('email', {
       validate: [{
         rules: [
-          { required: true },
+          { type: 'email',required: true, message: '请输入正确的邮箱地址' },
         ],
-        trigger: 'onBlur',
-      }, {
-        rules: [
-          { type: 'email', message: '请输入正确的邮箱地址' },
-        ],
-        trigger: ['onBlur', 'onChange'],
+        trigger: ['onBlur']
       }],
     });
     const passwdProps = getFieldProps('passwd', {
@@ -84,4 +107,5 @@ class LoginForm extends PureComponent {
 
 LoginForm = createForm()(LoginForm);
 
-export default LoginForm
+const mapStateToProps = state => ({ user: state.user });
+export default connect(mapStateToProps)(LoginForm);

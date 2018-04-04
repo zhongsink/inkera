@@ -6,6 +6,7 @@ import TextInput from './TextInput';
 import Nav from './Nav';
 import UserBar from './UserBar';
 import { listRepositories } from '../../models/actions/repository';
+import { currentUser } from '../../models/actions/user';
 import { objectToQueryString } from '../../../shared/utils/url';
 import './styles/Navigator.less';
 
@@ -26,7 +27,10 @@ class Navigator extends React.Component {
       value: event.target.value,
     });
   }
-
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(currentUser());
+  }
   onEnter() {
     const { dispatch } = this.props;
     const query = {
@@ -39,6 +43,7 @@ class Navigator extends React.Component {
   }
 
   render() {
+    let user = this.props.user;
     return (
       <div className="navigator">
         <div className="countainer">
@@ -53,12 +58,12 @@ class Navigator extends React.Component {
               onEnter={this.onEnter}
               placeholder="搜索一下..."
             />
-            <UserBar user={{name:"inkera", login: false}}/>
+            <UserBar user={user}/>
           </div>
         </div>
       </div>
     );
   }
 }
-
-export default connect()(Navigator);
+const mapStateToProps = state => ({ user: state.user });
+export default connect(mapStateToProps)(Navigator);
