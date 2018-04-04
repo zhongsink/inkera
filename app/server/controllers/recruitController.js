@@ -6,7 +6,8 @@ async function getAllRecruit(ctx) {
   try {
     let recruits = await Models.Recruit.findAll({
       offset: 20 * (page - 1),
-      limit: 20
+      limit: 20,
+      order: [['id', 'DESC']]
     });
     ctx.body = {
       status: true,
@@ -28,11 +29,11 @@ async function getAllRecruit(ctx) {
  * ctx.body ={ id: number }
  */
 async function getAnRecruit(ctx) {
-  let body = ctx.request.body;
+  let params = ctx.query;
   try {
     let recruit = await Models.Recruit.findOne({
       where: {
-        id: body.id
+        id: params.id
       }
     });
     ctx.body = {
@@ -65,7 +66,7 @@ async function addRecruit(ctx) {
     title: body.title,
     content: body.content,
     check: 0,
-    form: body.form,
+    from: body.from,
     url: body.url
   }
   try {
