@@ -31,6 +31,11 @@ export const routes = [
     component: universal(import('../containers/Login')),
   },
   {
+    key: 'article',
+    path: '/article/:id',
+    component: universal(import('../containers/Acticle')),
+  },
+  {
     key: 'register',
     path: '/register',
     exact: true,
