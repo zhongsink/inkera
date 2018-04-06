@@ -36,6 +36,23 @@ export const routes = [
     component: universal(import('../containers/Acticle')),
   },
   {
+    key: 'question_detail',
+    path: '/question/:id',
+    component: universal(import('../containers/QuestionDetail')),
+  },
+  {
+    key: 'recruit_Detail',
+    path: '/recruit/:id',
+    exact: true,
+    component: universal(import('../containers/RecruitDetail')),
+  },
+  {
+    key: 'user',
+    path: '/user/:hash',
+    exact: true,
+    component: universal(import('../containers/UserDetail')),
+  },
+  {
     key: 'register',
     path: '/register',
     exact: true,
