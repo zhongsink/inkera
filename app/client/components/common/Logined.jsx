@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import Avatar from 'react-avatar';
-import {Dropdown, Menu, Icon} from 'antd'
+import { Link } from 'react-router-dom';
+import { Dropdown, Menu, Icon } from 'antd'
 
 class Logined extends PureComponent {
-  constructor(){
+  constructor() {
     super()
   }
   render() {
@@ -12,31 +13,37 @@ class Logined extends PureComponent {
     const menu = (
       <Menu className="user-bar-menu">
         <Menu.Item>
-          <Icon type="edit" />
-          <a>写文章</a>
+          <Link to="/editor/new">
+            <Icon type="edit" />
+            &nbsp;&nbsp;写文章
+          </Link>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <Icon type="user" />
-          <a>我的主页</a>
+          <Link to={`/user/${user.authentication_token}`}>
+            <Icon type="user" />
+            &nbsp;&nbsp;我的主页
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Icon type="heart" />
-          <a>我的关注</a>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item>
-          <Icon type="setting" />
-          <a>设置</a>
-        </Menu.Item>
-        <Menu.Item>
-          <Icon type="info-circle-o" />
-          <a>关于</a>
+          <Link to={`/user/${user.authentication_token}#likes`}>
+            <Icon type="heart" />
+            &nbsp;&nbsp;我的关注
+          </Link>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <Icon type="logout" />
-          <a>登出</a>
+          <Link to="/about">
+            <Icon type="info-circle-o" />
+            &nbsp;&nbsp;关于
+          </Link>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item>
+          <a className="signout">
+            <Icon type="logout" />
+            &nbsp;&nbsp;登出
+          </a>
         </Menu.Item>
       </Menu>
     );

@@ -4,6 +4,7 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import List from '../components/home/List'
+import { BackTop } from 'antd'
 import './styles/Home.less';
 
 class Home extends React.Component {
@@ -50,6 +51,7 @@ class Home extends React.Component {
             </div>
           </section>
         </div>
+        <BackTop />
         <Footer />
       </div>
     );

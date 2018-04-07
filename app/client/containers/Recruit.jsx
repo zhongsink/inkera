@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BackTop } from 'antd'
 import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
@@ -28,6 +29,7 @@ class Recruit extends React.Component {
             </div>
           </section>
         </div>
+        <BackTop />
         <Footer/>
       </div>
     )

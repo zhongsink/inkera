@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
+import { Spin } from 'antd';
 import Markdown from '../common/Markdown';
 
 class RecruitContent extends PureComponent {
@@ -15,7 +16,8 @@ class RecruitContent extends PureComponent {
     if (recruit && !recruit.content) {
       return (
         <div className="markdown-body">
-          加载中...
+          加载中... &nbsp;&nbsp;&nbsp;
+          <Spin />
         </div>
       );
     }
