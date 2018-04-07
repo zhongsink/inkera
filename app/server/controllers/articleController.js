@@ -8,9 +8,11 @@ async function getAllArtcle(ctx) {
     let articles = await Models.Article.findAll({
       offset: 20 * (page - 1),
       limit: 20,
-      order: [['id', 'DESC']]
+      order: [
+        ['id', 'DESC']
+      ]
     });
-    for(let article of articles) {
+    for (let article of articles) {
       user = await Models.User.findOne({
         where: {
           id: article.UserId
@@ -18,7 +20,7 @@ async function getAllArtcle(ctx) {
       })
       result.push({
         article,
-        user:{
+        user: {
           id: user.id,
           name: user.name,
           username: user.usename,
@@ -84,15 +86,32 @@ async function addArtcle(ctx) {
  */
 async function getAnArticle(ctx) {
   let params = ctx.query;
+  let result = {};
   try {
     let article = await Models.Article.findOne({
       where: {
         id: params.id
       }
     });
+    let user = await Models.User.findOne({
+      where: {
+        id: article.UserId
+      }
+    })
+    result = {
+      article: article,
+      user: {
+        id: user.id,
+        name: user.name,
+        username: user.usename,
+        portrait: user.portrait,
+        email: user.email,
+        authentication_token: user.authentication_token
+      }
+    }
     ctx.body = {
       status: true,
-      list: article
+      result: result
     }
   } catch (error) {
     Logger.error(`find Article:${error.message}`);

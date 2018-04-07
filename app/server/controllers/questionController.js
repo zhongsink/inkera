@@ -47,15 +47,32 @@ async function getAllQuestion(ctx) {
  */
 async function getAnQuestion(ctx) {
   let params = ctx.query;
+  let resule = {};
   try {
     let question = await Models.Question.findOne({
       where: {
         id: params.id
       }
     });
+    let user = await Models.User.findOne({
+      where: {
+        id: question.UserId
+      }
+    })
+    result = {
+      question: question,
+      user: {
+        id: user.id,
+        name: user.name,
+        username: user.usename,
+        portrait: user.portrait,
+        email: user.email,
+        authentication_token: user.authentication_token
+      }
+    }
     ctx.body = {
       status: true,
-      list: question
+      result: result
     }
   } catch (error) {
     Logger.error(`find question:${error.message}`);
