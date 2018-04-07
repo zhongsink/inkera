@@ -38,7 +38,7 @@ async function getAnRecruit(ctx) {
     });
     ctx.body = {
       status: true,
-      list: recruit
+      result: recruit
     }
   } catch (error) {
     Logger.error(`find Recruit:${error.message}`);

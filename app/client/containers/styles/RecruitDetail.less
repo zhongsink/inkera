@@ -1,1 +1,61 @@
 @import "~themes/default.less";
+.center.recruit-detail {
+    .recruit-container {
+        display: flex;
+        flex-direction: row;
+        .recruit-detail {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            margin: 1.3rem 0;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+        }
+        .author-info-block {
+            padding: 1.3rem 2rem;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            .author-info-box {
+                display: flex;
+                font-size: 1rem;
+                align-content: center;
+                flex-direction: column;
+                padding-left: 1rem;
+                .time {
+                    color: #909090;
+                }
+                a {
+                    display: inline-block;
+                    max-width: 100%;
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    color: #333;
+                }
+            }
+        }
+        .article-title {
+            padding: 0 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+    }
+    @media (min-width: 980px) {
+        .recruit-container {
+            width: 960px;
+        }
+        .aside {
+            margin: 1.3rem 0 0 1.3rem;
+        }
+    }
+    @media (max-width: 980px) {
+        .recruit-container, .recruit-detail {
+            width: 100%;
+        }
+        .aside {
+            display: none;
+        }
+    }
+}
