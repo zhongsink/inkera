@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import TimeAgo from 'timeago-react';
 
 class Item extends PureComponent {
   constructor() {
@@ -24,7 +25,11 @@ class Item extends PureComponent {
             <a href={recruit.url}>
               <span className="dot">{recruit.from}</span>
             </a>
-            <span>{recruit.createdAt.slice(0, 10)}</span>
+            <span>
+              <TimeAgo
+                datetime={recruit.createdAt}
+                locale='zh_CN' />
+            </span>
           </div>
           <div className="item-title">
             <Link to={`/recruit/${recruit.id}`}>

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import TimeAgo from 'timeago-react';
 
 class Item extends PureComponent {
   constructor() {
@@ -24,7 +25,11 @@ class Item extends PureComponent {
         <div className="item-content">
           <div className="header">
             <span className="colorful dot">专栏</span>
-            <span className="dot">{article.createdAt.slice(0, 10)}</span>
+            <span className="dot">
+              <TimeAgo
+                datetime={article.createdAt}
+                locale='zh_CN' />
+            </span>
             <span>{article.lable}</span>
           </div>
           <div className="item-title">

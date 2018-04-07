@@ -21,6 +21,10 @@
   version "1.0.6"
   resolved "http://registry.npm.taobao.org/@types/geojson/download/@types/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
 
+"@types/jquery@^2.0.40":
+  version "2.0.49"
+  resolved "http://registry.npm.taobao.org/@types/jquery/download/@types/jquery-2.0.49.tgz#95bd7064caebf65bde10429dff491a1aea05b67d"
+
 "@types/node@*":
   version "9.4.5"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
@@ -6681,6 +6685,18 @@ through@^2.3.6:
 time-stamp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-2.0.0.tgz#95c6a44530e15ba8d6f4a3ecb8c3a3fac46da357"
+
+timeago-react@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/timeago-react/download/timeago-react-2.0.0.tgz#01ed7cea809a0e03706c6ec5602bfd29f76d8e49"
+  dependencies:
+    timeago.js "^3.0.1"
+
+timeago.js@^3.0.1:
+  version "3.0.2"
+  resolved "http://registry.npm.taobao.org/timeago.js/download/timeago.js-3.0.2.tgz#32a67e7c0d887ea42ca588d3aae26f77de5e76cc"
+  dependencies:
+    "@types/jquery" "^2.0.40"
 
 timers-browserify@^2.0.2:
   version "2.0.3"
