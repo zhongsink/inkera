@@ -5,7 +5,13 @@ const initialState = {
   name: undefined,
   usename: undefined,
   email: undefined,
-  authentication_token: undefined
+  authentication_token: undefined,
+  phone: undefined,
+  github: undefined,
+  position: undefined,
+  company: undefined,
+  introduction: undefined,
+  website:undefined
 };
 
 const handlers = {

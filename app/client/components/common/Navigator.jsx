@@ -28,8 +28,9 @@ class Navigator extends React.Component {
     });
   }
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(currentUser());
+    const { dispatch, user } = this.props;
+    if (!user.login)
+      dispatch(currentUser());
   }
   onEnter() {
     const { dispatch } = this.props;

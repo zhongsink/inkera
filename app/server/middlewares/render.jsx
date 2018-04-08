@@ -55,13 +55,6 @@ const render = async (ctx) => {
       const stats = getClientStats(ctx.state.webpackStats);
       const { js, styles, cssHash } = webpackFlushChunks(stats.toJson(), { chunkNames });
       let storeState = {};
-      if (ctx.cookies.get('inkera-user-id'))
-        storeState = {
-          user: { 
-            login: true,
-            name: '...'
-          }
-        }
       await ctx.render('200', { csrf: ctx.csrf, content, js, styles, cssHash, state: Object.assign(store.getState(), storeState) });
     } else {
       await ctx.render('404', { message: 'Page not found :-(' });

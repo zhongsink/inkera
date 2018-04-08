@@ -40,7 +40,7 @@ async function SignUp(ctx) {
     let token = md5(+new Date() + '');
     let params = {
       name: body.name,
-      usename: body.usename,
+      usename: body.username,
       email: body.email,
       encrypted_password: md5(body.password),
       authentication_token: token
@@ -69,7 +69,8 @@ async function SignUp(ctx) {
 }
 async function getCurrentUser(ctx) {
   let tooken = ctx.cookies.get('inkera-user-id') || '';
-  let user = null;
+  let user = null,
+    profile = null;
   if (tooken) {
     let params = {
       where: {
@@ -78,13 +79,29 @@ async function getCurrentUser(ctx) {
     }
     try {
       user = await Models.User.findOne(params);
-      if (user) {
+      profile = await Models.Profile.findOrCreate({
+        where: {
+          UserId: user.id
+        },
+        defaults: {
+          position: '学生',
+          company: 'jscode社区',
+          introduction: '人生苦短，码不停蹄'
+        }
+      })
+      if (user && profile[0]) {
         currentUser = {
           login: true,
           name: user.name,
           usename: user.usename,
           email: user.email,
-          authentication_token: user.authentication_token
+          authentication_token: user.authentication_token,
+          phone: profile[0].phone,
+          github: profile[0].github,
+          position: profile[0].position,
+          company: profile[0].company,
+          introduction: profile[0].introduction,
+          website: profile[0].website
         }
         ctx.body = {
           status: 1,
@@ -113,10 +130,58 @@ async function getCurrentUser(ctx) {
   ctx.status = 200;
 }
 
+async function getUserInfo(ctx) {
+  let tooken = ctx.query.hash
+  let user = null,
+    profile = null,
+    userObj = {};
+  try {
+    user = await Models.User.findOne({
+      where: {
+        authentication_token: tooken
+      }
+    });
+    profile = await Models.Profile.findOne({
+      where: {
+        UserId: user.id
+      }
+    })
+    if (user && profile) {
+      userObj = {
+        name: user.name,
+        usename: user.usename,
+        email: user.email,
+        authentication_token: user.authentication_token,
+        phone: profile.phone,
+        github: profile.github,
+        position: profile.position,
+        company: profile.company,
+        introduction: profile.introduction,
+        website: profile.website
+      }
+      ctx.body = {
+        status: 1,
+        user: userObj
+      };
+    } else {
+      ctx.body = {
+        status: 0,
+        user: {
+          login: false
+        }
+      };
+    }
+  } catch (error) {
+    Logger.error(`user finding: ${error.message}`);
+    ctx.status = 500;
+  }
+  ctx.status = 200;
+}
 let user = {
   Login,
   SignUp,
-  getCurrentUser
+  getCurrentUser,
+  getUserInfo
 }
 
 module.exports = user

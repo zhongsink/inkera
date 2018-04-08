@@ -1,1 +1,172 @@
 @import "~themes/default.less";
+.center.user {
+    .user-detail-container {
+        display: flex;
+        flex-direction: column;
+        .tab-text {
+            font-size: 1.3rem;
+        }
+        .ant-tabs-tabpane .nothing {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #b2bac2;
+            padding: 2rem;
+            .empty-text {
+                margin-top: 1.2rem;
+            }
+        }
+        @media (min-width: 600px) {
+            .tab-container {
+                margin: 0 1.3rem;
+                background: #fff;
+                border-radius: 2px;
+                .ant-tabs-bar {
+                    border: none;
+                }
+                .ant-tabs-tabpane {
+                    text-align: center;
+                }
+            }
+            .user-info-block {
+                display: flex;
+                flex-direction: row;
+                margin: 1.3rem;
+                padding: 2rem;
+                background: #fff;
+                border-radius: 2px;
+                .info-box {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1 1 auto;
+                    padding: 0 2rem;
+                }
+                .name {
+                    margin-bottom: 0.3rem;
+                    font-size: 2.167rem;
+                    font-weight: 600;
+                    line-height: 1.2;
+                    color: #000;
+                }
+                .position,
+                .info {
+                    margin-top: 0.3rem;
+                    font-size: 1.25rem;
+                    line-height: 1.5;
+                    color: #72777b;
+                    span {
+                        padding: 0 0.5rem
+                    }
+                }
+                .link-box {
+                    text-align: end;
+                    margin-bottom: 2rem;
+                    a {
+                        margin: 0 .2rem;
+                        padding: .5rem;
+                    }
+                    .anticon {
+                        font-size: 1.7rem;
+                        color: #000;
+                    }
+                }
+                .action-box {
+                    a.button {
+                        color: #92c452;
+                        padding: .5rem;
+                        font-size: 1.333rem;
+                        font-weight: 500;
+                        line-height: 1.5;
+                        border: 1px solid currentColor;
+                        background-color: #fff;
+                        border-radius: 4px;
+                        transition: background-color .3s, color .3s;
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 600px) {
+        .tab-container {
+            margin-top: 1.3rem;
+            background: #fff;
+            border-radius: 2px;
+            .ant-tabs-bar {
+                border: none;
+            }
+            .ant-tabs-tabpane {
+                text-align: center;
+            }
+        }
+        .user-info-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.3rem; 
+            padding: 2rem;
+            background: #fff;
+            border-radius: 2px;
+            .info-box {
+                display: flex;
+                flex-direction: column;
+                flex: 1 1 auto;
+                padding: 0 2rem;
+            }
+            .name {
+                text-align: center;
+                margin: 1rem 0;
+                font-size: 2.167rem;
+                font-weight: 600;
+                line-height: 1.2;
+                color: #000;
+            }
+            .position,
+            .info {
+                margin-top: 0.3rem;
+                font-size: 1.25rem;
+                line-height: 1.5;
+                color: #72777b;
+                span {
+                    padding: 0 0.5rem
+                }
+            }
+            .link-box {
+                text-align: center;
+                margin: 1rem 0;
+                a {
+                    margin: 0 .2rem;
+                    padding: .5rem;
+                }
+                .anticon {
+                    font-size: 2rem;
+                    color: #000;
+                }
+            }
+            .action-box {
+                a.button {
+                    color: #92c452;
+                    padding: .5rem;
+                    margin-top: .5rem; 
+                    font-size: 1.333rem;
+                    font-weight: 500;
+                    line-height: 1.5;
+                    border: 1px solid currentColor;
+                    background-color: #fff;
+                    border-radius: 4px;
+                    transition: background-color .3s, color .3s;
+                }
+            }
+        }
+    }
+    @media (min-width: 980px) {
+        .user-detail-container {
+            width: 960px;
+        }
+    }
+    @media (max-width: 980px) {
+        .user-detail-container {
+            width: 100%;
+        }
+    }
+}
