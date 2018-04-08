@@ -1,8 +1,13 @@
 @import "~themes/default.less";
 .center.user {
-    .user-detail-container {
+    .user-detail {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        .user-detail-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto
+        }
         .tab-text {
             font-size: 1.3rem;
         }
@@ -12,14 +17,13 @@
             justify-content: center;
             align-items: center;
             color: #b2bac2;
-            padding: 2rem;
+            padding: 5rem 0 6.5rem 0;
             .empty-text {
                 margin-top: 1.2rem;
             }
         }
         @media (min-width: 600px) {
             .tab-container {
-                margin: 0 1.3rem;
                 background: #fff;
                 border-radius: 2px;
                 .ant-tabs-bar {
@@ -32,7 +36,7 @@
             .user-info-block {
                 display: flex;
                 flex-direction: row;
-                margin: 1.3rem;
+                margin: 1.3rem 0;
                 padding: 2rem;
                 background: #fff;
                 border-radius: 2px;
@@ -103,7 +107,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 1.3rem; 
+            margin-top: 1.3rem;
             padding: 2rem;
             background: #fff;
             border-radius: 2px;
@@ -147,7 +151,7 @@
                 a.button {
                     color: #92c452;
                     padding: .5rem;
-                    margin-top: .5rem; 
+                    margin-top: .5rem;
                     font-size: 1.333rem;
                     font-weight: 500;
                     line-height: 1.5;
@@ -160,13 +164,56 @@
         }
     }
     @media (min-width: 980px) {
-        .user-detail-container {
+        .user-detail {
             width: 960px;
+        }
+        .aside {
+            margin: 1.3rem 0 0 1.3rem;
+            .sticky-wrap {
+                display: flex;
+                flex-direction: column;
+                width: 200px;
+                .follow-block {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    background: #fff;
+                    border-radius: 2px;
+                    &>.item {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1 1 auto;
+                        justify-content: center;
+                        padding: 1.333rem 0;
+                        text-align: center;
+                        color: #31445b;
+                        font-size: 1.3rem;
+                    }
+                }
+                .more-block {
+                    margin-top: 1.3rem;
+                    &>.item {
+                        border-top: 1px solid hsla(240,2%,90%,.5);
+                        padding: .5rem;
+                    }
+                    &>.item, .item-title, .item-content {
+                        display: flex;
+                        flex: 1 1 auto;
+                        font-size: 1.3rem;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
         }
     }
     @media (max-width: 980px) {
-        .user-detail-container {
+        .user-detail {
             width: 100%;
+        }
+        .aside {
+            display: none;
         }
     }
 }

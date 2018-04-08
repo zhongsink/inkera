@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Icon, BackTop, Spin } from 'antd'
 import axios from 'axios';
 import UserInfo from '../components/user/UserInfo';
+import Aside from '../components/user/Aside';
 import Tab from '../components/user/Tab';
 import './styles/UserDetail.less';
 
@@ -15,6 +16,7 @@ class UserDetail extends React.Component {
     this.state = {
       userInfo: {
         asyn: false,
+        id: undefined,
         name: undefined,
         usename: undefined,
         email: undefined,
@@ -68,9 +70,14 @@ class UserDetail extends React.Component {
       <div className="main">
         <Navigator />
         <div className="center user">
-          <section className="user-detail-container">
-            {this.renderUserInfo()}
-            <Tab />
+          <section className="user-detail">
+            <div className="user-detail-container">
+              {this.renderUserInfo()}
+              <Tab />
+            </div>
+            <div className="aside">
+              <Aside />
+            </div>
           </section>
         </div>
         <BackTop />

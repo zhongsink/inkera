@@ -148,6 +148,7 @@ async function getUserInfo(ctx) {
     })
     if (user && profile) {
       userObj = {
+        id: user.id,
         name: user.name,
         usename: user.usename,
         email: user.email,
