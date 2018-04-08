@@ -59,6 +59,12 @@ export const routes = [
     component: universal(import('../containers/Register')),
   },
   {
+    key: 'about',
+    path: '/about',
+    exact: true,
+    component: universal(import('../containers/About')),
+  },
+  {
     key: 'repositories',
     path: '/repositories',
     component: universal(import('../containers/Repository')),

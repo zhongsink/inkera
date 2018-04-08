@@ -20,7 +20,14 @@ class UserInfo extends PureComponent {
     const Website = () => {
       return (
         <a href={user.website} title="个人主页" target="_blank">
-          <Icon type="aliwangwang-o" />
+          <Icon type="cloud-o" />
+        </a>
+      )
+    }
+    const Email = () => {
+      return (
+        <a href={`mailto:${user.email}`} title="Email">
+          <Icon type="mail" />
         </a>
       )
     }
@@ -48,6 +55,7 @@ class UserInfo extends PureComponent {
         </div>
         <div className="action-box">
           <div className="link-box">
+            {user.email ? <Email /> : null}
             {user.github ? <Github /> : null}
             {user.website ? <Website /> : null}
           </div>
