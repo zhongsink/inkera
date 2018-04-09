@@ -4,6 +4,8 @@ const userController = require('../controllers/userController');
 const articleController = require('../controllers/articleController');
 const questionController = require('../controllers/questionController');
 const recruitController = require('../controllers/recruitController');
+const profileController = require('../controllers/profileController');
+
 let router = new Router();
 
 router.post('/signup', userController.SignUp);
@@ -27,5 +29,6 @@ router.post('/recruit/add',recruitController.addRecruit);
 router.delete('/recruit/delete',recruitController.delRecruit);
 router.get('/recruit/get',recruitController.getAnRecruit);
 
+router.post('/updateProfile',profileController.updateProfile);
 
 module.exports = router

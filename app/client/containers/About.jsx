@@ -5,7 +5,7 @@ class About extends React.Component {
 
   render() {
     return (
-      <div className="main">
+      <div className="main about">
         <section className="hero background-cover vertical-center">
             <div className="container">
                 <img src="/public/img/logo_w.png" alt="logo" className="jscode-logo"/>

@@ -48,8 +48,17 @@ export const routes = [
   },
   {
     key: 'user',
+    path: '/user/profile',
+    component: universal(import('../containers/Profile')),
+  },
+  {
+    key: 'user',
+    path: '/editor/new',
+    component: universal(import('../containers/Editor')),
+  },
+  {
+    key: 'user',
     path: '/user/:hash',
-    exact: true,
     component: universal(import('../containers/UserDetail')),
   },
   {
