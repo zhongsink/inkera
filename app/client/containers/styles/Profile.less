@@ -11,7 +11,6 @@
     }
     .setting-profile-view {
         background: #fff;
-        padding: 2.7rem 4rem;
         border-radius: 2px;
         h1 {
             font-size: 2em;
@@ -78,6 +77,7 @@
         .update-profile {
             width: 960px;
             .setting-profile-view {
+                padding: 2.7rem 4rem;
                 width: 700px;
             }
         }
@@ -86,14 +86,28 @@
         .update-profile {
             width: 80%;
             .setting-profile-view {
+                padding: 2.7rem 4rem;
                 width: 100%;
             }
         }
     }
     @media (max-width: 600px) {
-        .update-profile,
-        .setting-profile-view {
+        .update-profile {
             width: 100%;
+        }
+        .setting-profile-view {
+            padding: 1rem;
+            width: 100%;
+            .setting-list .item span {
+                min-width: 8.2rem;
+            }
+            .action-box .edit-btn {
+                display: flex;
+                flex-direction: row;
+                & > div {
+                    white-space: nowrap;
+                }
+            }
         }
     }
 }
