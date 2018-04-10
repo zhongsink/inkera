@@ -62,7 +62,7 @@ async function addArtcle(ctx) {
     let params = {
       title: body.title,
       content: body.content,
-      lable: body.lable,
+      lable: body.label,
       check: 0,
       heats: 0,
       UserId: user.id,

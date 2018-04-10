@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import UserNav from '../common/UserNav'
 import Item from './Item';
 
 class List extends PureComponent {
   constructor() {
     super();
     this.state = {
-      list:[]
+      list: []
     }
   }
   renderList() {
@@ -24,24 +26,29 @@ class List extends PureComponent {
   componentDidMount() {
     let self = this;
     axios.get('/question/list')
-    .then(function (response) {
-      if (response.data.status) {
-        self.setState({
-          list:response.data.list
-        });
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            list: response.data.list
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   render() {
+    let { user } = this.props;
     return (
-      <div className="List">
-        { this.renderList() }
+      <div className="question-list-container">
+        {user.login ? <UserNav user={user} url="/editor/question" text="提问" /> : null}
+        <div className="List">
+          {this.renderList()}
+        </div>
       </div>
     )
   }
 }
 
-export default List;
+const mapStateToProps = state => ({ user: state.user });
+export default connect(mapStateToProps)(List);

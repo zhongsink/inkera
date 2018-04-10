@@ -61,6 +61,7 @@ class Logined extends PureComponent {
             size={32}
             round={true}
             textSizeRatio={1.75}
+            src={user.portrait}
           />
           <Icon type="down" />
         </a>

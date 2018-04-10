@@ -10,6 +10,7 @@ const initialState = {
   github: undefined,
   position: undefined,
   company: undefined,
+  portrait: undefined,
   introduction: undefined,
   website:undefined
 };

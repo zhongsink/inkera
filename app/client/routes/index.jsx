@@ -52,9 +52,14 @@ export const routes = [
     component: universal(import('../containers/Profile')),
   },
   {
-    key: 'user',
+    key: 'editor',
     path: '/editor/new',
     component: universal(import('../containers/Editor')),
+  },
+  {
+    key: 'editor',
+    path: '/editor/question',
+    component: universal(import('../containers/EditorQuestion')),
   },
   {
     key: 'user',

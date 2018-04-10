@@ -95,14 +95,19 @@ async function getAnQuestion(ctx) {
  */
 async function addQuestion(ctx) {
   let body = ctx.request.body;
-  let params = {
-    title: body.title,
-    content: body.content,
-    check: 0,
-    heats: 0,
-    UserId: body.userId,
-  }
   try {
+    let user = await Models.User.findOne({
+      where: {
+        authentication_token: body.authentication_token
+      }
+    });
+    let params = {
+      title: body.title,
+      content: body.content,
+      check: 0,
+      heats: 0,
+      UserId: user.id,
+    }
     await Models.Question.create(params);
     ctx.body = {
       status: true,

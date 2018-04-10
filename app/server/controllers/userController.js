@@ -19,6 +19,7 @@ async function Login(ctx) {
         login: true,
         name: user.name,
         usename: user.usename,
+        portrait: user.portrait,
         email: user.email,
         authentication_token: user.authentication_token
       }
@@ -96,6 +97,7 @@ async function getCurrentUser(ctx) {
           usename: user.usename,
           email: user.email,
           authentication_token: user.authentication_token,
+          portrait: user.portrait,
           phone: profile[0].phone,
           github: profile[0].github,
           position: profile[0].position,
@@ -153,6 +155,7 @@ async function getUserInfo(ctx) {
         usename: user.usename,
         email: user.email,
         authentication_token: user.authentication_token,
+        portrait: user.portrait,
         phone: profile.phone,
         github: profile.github,
         position: profile.position,

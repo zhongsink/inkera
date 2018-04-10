@@ -54,8 +54,7 @@ class UserDetail extends React.Component {
     if (!userInfo.asyn) {
       return (
         <div className="user-info-block">
-          加载中... &nbsp;&nbsp;&nbsp;
-          <Spin />
+          加载中...
         </div>
       )
     }
