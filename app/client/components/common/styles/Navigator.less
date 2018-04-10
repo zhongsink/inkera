@@ -12,6 +12,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-left: 1rem;
       .ant-dropdown-link {
         padding: 1rem 0;
       }
@@ -49,11 +50,14 @@
       .mobile-nav {
         display: none;
       }
-      .search {
+      .search , .add-group {
         color: #71777c;
         padding: 1.2rem;
         font-size: 1.33rem;
         cursor: pointer;
+      }
+      .add-group .ant-btn {
+        border-radius: 2px;
       }
   
       .ant-menu-item a {
@@ -76,7 +80,7 @@
       .ant-menu {
         display: none;
       }
-      .search {
+      .search, .add-group {
         display: none;
       }
     }

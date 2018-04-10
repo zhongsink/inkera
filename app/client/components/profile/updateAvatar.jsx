@@ -15,6 +15,12 @@ class UpdateAvatar extends PureComponent {
       headers: {
         authorization: 'authorization-text',
       },
+      data(file) {
+        return {
+          _csrf: document.querySelector("meta[name=csrf-token]").content,
+          file
+        }
+      },
       onChange(info) {
         if (info.file.status !== 'uploading') {
           console.log(info.file, info.fileList);

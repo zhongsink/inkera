@@ -1,0 +1,108 @@
+@import "~themes/default.less";
+.main.editor {
+    width: 100%;
+    height: 100vh;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    .editor-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 1.4rem;
+        height: 5.334rem;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        z-index: 100;
+        .title-input {
+            display: flex;
+            flex: 1 1 auto;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            border: none;
+            outline: none;
+        }
+        .status-text {
+            font-size: 1.334rem;
+            white-space: nowrap;
+            color: #ddd;
+            cursor: default;
+            user-select: none;
+        }
+        .right-box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            & > div, .ant-dropdown-link {
+                padding: 1rem;
+            }
+        }
+    }
+    .editor-container {
+        display: flex;
+        flex: 1 1 100%;
+        flex-direction: row;
+        .editor-box, .editor-preview {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 50%;
+        }
+        .editor-preview {
+            background: #fff;
+            padding: 30px;
+            overflow-y: scroll;
+        }
+        .ace_text-input {
+            border: none;
+            background: transparent;
+            display: flex;
+            flex: 1 1 auto;
+            outline: none;
+            padding: 30px;
+            resize: none;
+        }
+        .editor-action {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 1rem;
+            background: #fff;
+            .anticon-picture {
+                font-size: 2rem;
+                cursor: pointer;
+            }
+            .article-lable {
+                border: none;
+                flex: 1 1 auto;
+                padding: 0 2rem;
+                outline: none;
+            }
+        }
+    }
+}
+.ant-dropdown .mobile-menu, .ant-dropdown .user-bar-menu {
+    padding: 5px 0;
+    .ant-dropdown-menu-item-divider{
+      margin: 5px 0;
+    }
+    .ant-dropdown-menu-item {
+      &.ant-dropdown-menu-item-selected {
+        background: #fff;
+        a {
+          background: #fff;
+        }
+      }
+      &:hover {
+        background-color: hsla(0,0%,95%,.5);
+      }
+      a {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 5px 0;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  

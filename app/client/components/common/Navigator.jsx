@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
 import TextInput from './TextInput';
 import Nav from './Nav';
 import UserBar from './UserBar';
@@ -49,7 +50,7 @@ class Navigator extends React.Component {
       <div className="navigator">
         <div className="countainer">
           <Link className="icon" to="/">
-            <img src="/public/img/logo.png" alt="jscode logo"/>
+            <img src="/public/img/logo.png" alt="jscode logo" />
           </Link>
           <Nav current={this.props.current || ''}></Nav>
           <div className="user-bar">
@@ -59,7 +60,14 @@ class Navigator extends React.Component {
               onEnter={this.onEnter}
               placeholder="搜索一下..."
             />
-            <UserBar user={user}/>
+            <div className="add-group">
+              <Link to={user.login ? "/editor/new": "/login" }>
+                <Button type="primary">
+                  写文章
+                </Button>
+              </Link>
+            </div>
+            <UserBar user={user} />
           </div>
         </div>
       </div>

@@ -13,6 +13,12 @@ class Logined extends PureComponent {
     const menu = (
       <Menu className="user-bar-menu">
         <Menu.Item>
+          <Link to="/">
+            <Icon type="home" />
+            &nbsp;&nbsp;首页
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to="/editor/new">
             <Icon type="edit" />
             &nbsp;&nbsp;写文章

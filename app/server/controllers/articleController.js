@@ -55,15 +55,18 @@ async function getAllArtcle(ctx) {
  */
 async function addArtcle(ctx) {
   let body = ctx.request.body;
-  let params = {
-    title: body.title,
-    content: body.content,
-    lable: body.lable,
-    check: 0,
-    heats: 0,
-    UserId: body.userId,
-  }
   try {
+    let user = await Models.User.findOne({where:{
+      authentication_token: body.authentication_token
+    }});
+    let params = {
+      title: body.title,
+      content: body.content,
+      lable: body.lable,
+      check: 0,
+      heats: 0,
+      UserId: user.id,
+    }
     await Models.Article.create(params);
     ctx.body = {
       status: true,
