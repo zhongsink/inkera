@@ -74,6 +74,9 @@ class EditorQuestion extends React.Component {
       <div className="main editor">
         <Nav user={user} placeholder={'输入文章标题...'} title={this.state.title} change={this.titleChange} save={this.save}/>
         <EditorAndPreview type="question" lable='' content={this.state.content} change={{ contentChange }} />
+        <div className="mobile-show">
+          为了更好的体验，请到 pc 中使用
+        </div>
       </div>
     );
   }

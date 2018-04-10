@@ -5,6 +5,9 @@
     font-size: 14px;
     display: flex;
     flex-direction: column;
+    .mobile-show {
+        display: none;
+    }
     .editor-nav {
         display: flex;
         flex-direction: row;
@@ -35,7 +38,8 @@
             flex-direction: row;
             align-items: center;
             justify-content: flex-end;
-            & > div, .ant-dropdown-link {
+            &>div,
+            .ant-dropdown-link {
                 padding: 1rem;
             }
         }
@@ -44,7 +48,8 @@
         display: flex;
         flex: 1 1 100%;
         flex-direction: row;
-        .editor-box, .editor-preview {
+        .editor-box,
+        .editor-preview {
             display: flex;
             flex-direction: column;
             flex: 1 1 50%;
@@ -82,27 +87,42 @@
         }
     }
 }
-.ant-dropdown .mobile-menu, .ant-dropdown .user-bar-menu {
+
+.ant-dropdown .mobile-menu,
+.ant-dropdown .user-bar-menu {
     padding: 5px 0;
-    .ant-dropdown-menu-item-divider{
-      margin: 5px 0;
+    .ant-dropdown-menu-item-divider {
+        margin: 5px 0;
     }
     .ant-dropdown-menu-item {
-      &.ant-dropdown-menu-item-selected {
-        background: #fff;
-        a {
-          background: #fff;
+        &.ant-dropdown-menu-item-selected {
+            background: #fff;
+            a {
+                background: #fff;
+            }
         }
-      }
-      &:hover {
-        background-color: hsla(0,0%,95%,.5);
-      }
-      a {
-        display: inline-block;
-        margin: 0 5px;
-        padding: 5px 0;
-        font-size: 1.3rem;
-      }
+        &:hover {
+            background-color: hsla(0, 0%, 95%, .5);
+        }
+        a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 0;
+            font-size: 1.3rem;
+        }
     }
-  }
-  
+}
+
+@media (max-width: 600px) {
+    .main.editor {
+        .editor-nav, .editor-container {
+            display: none;
+        }
+        .mobile-show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 auto;
+        }
+    }
+}
