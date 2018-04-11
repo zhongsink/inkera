@@ -24,6 +24,7 @@ router.get('/question/list',questionController.getAllQuestion);
 router.post('/question/add',questionController.addQuestion);
 router.delete('/question/delete',questionController.delQuestion);
 router.get('/question/get',questionController.getAnQuestion);
+router.get('/question/recommended',questionController.recommendedQuestions);
 
 router.get('/recruit/list',recruitController.getAllRecruit);
 router.post('/recruit/add',recruitController.addRecruit);

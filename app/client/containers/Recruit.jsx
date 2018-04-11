@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BackTop } from 'antd'
+import { BackTop, Affix } from 'antd'
 import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
@@ -26,18 +26,36 @@ class Recruit extends React.Component {
     ]
     return (
       <div className="main">
-        <Navigator current='recruit'/>
+        <Navigator current='recruit' />
         <div className="center recruit">
           <section className="list-container">
-            <List/>
+            <List />
             <div className="aside">
-              <Advertisement Ad={adv[0]}/>
-              <Advertisement Ad={adv[1]}/>
+              <Affix offsetTop={10}>
+                <Advertisement Ad={adv[0]} />
+                <Advertisement Ad={adv[1]} />
+                <div className="sidebar-block">
+                  <div className="recuit-title">
+                    招聘相关链接
+                  </div>
+                  <ul className="more-list">
+                    <li className="item">
+                      <a href="http://react-china.org/c/jobs">react 中文</a>
+                    </li>
+                    <li className="item">
+                      <a href="https://www.vue-js.com/?tab=job">Vue.js专业中文社区</a>
+                    </li>
+                    <li className="item">
+                      <a href="https://cnodejs.org/?tab=job">CNode：Node.js专业中文社区</a>
+                    </li>
+                  </ul>
+                </div>
+              </Affix>
             </div>
           </section>
         </div>
         <BackTop />
-        <Footer/>
+        <Footer />
       </div>
     )
   }

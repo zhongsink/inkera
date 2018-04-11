@@ -190,7 +190,8 @@ async function recommendedArticles(ctx) {
     let articles = await Models.Article.findAll({
       limit: 5,
       order: [
-        ['heats', 'DESC']
+        ['heats', 'DESC'],
+        ['id', 'DESC']
       ]
     });
     ctx.body = {

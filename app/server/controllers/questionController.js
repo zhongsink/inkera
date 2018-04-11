@@ -152,11 +152,35 @@ async function delQuestion(ctx) {
   ctx.status = 200;
 }
 
+async function recommendedQuestions(ctx) {
+  try {
+    let questions = await Models.Question.findAll({
+      limit: 5,
+      order: [
+        ['heats', 'DESC'],
+        ['id', 'DESC']
+      ]
+    });
+    ctx.body = {
+      status: true,
+      result: questions
+    }
+  } catch (error) {
+    Logger.error(error.message);
+    ctx.body = {
+      status: false,
+      message: '查询失败'
+    }
+  }
+  ctx.status = 200;
+}
+
 let question = {
   getAllQuestion,
   getAnQuestion,
   addQuestion,
-  delQuestion
+  delQuestion,
+  recommendedQuestions
 }
 
 module.exports = question
