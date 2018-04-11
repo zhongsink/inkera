@@ -1,0 +1,36 @@
+.side-user {
+    position: relative;
+    margin-bottom: 1.3rem;
+    background: #fff;
+    border-radius: 2px;
+    width: 240px;
+    .block-title {
+        padding: 1rem 1.3rem;
+        font-size: 1.16rem;
+        color: #333;
+        border-bottom: 1px solid hsla(0, 0%, 59%, .1);
+    }
+    .block-body {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1.3rem;
+        font-size: 1.16rem;
+        .body-item {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 1rem;
+            align-items: center;
+        }
+        .user-position {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            padding-left: 1rem;
+            .text-overflow {
+                word-break: break-all;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+}

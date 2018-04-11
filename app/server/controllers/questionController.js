@@ -59,6 +59,11 @@ async function getAnQuestion(ctx) {
         id: question.UserId
       }
     })
+    let profile = await Models.Profile.findOne({
+      where: {
+        UserId: user.id
+      }
+    })
     result = {
       question: question,
       user: {
@@ -67,7 +72,8 @@ async function getAnQuestion(ctx) {
         username: user.usename,
         portrait: user.portrait,
         email: user.email,
-        authentication_token: user.authentication_token
+        authentication_token: user.authentication_token,
+        profile: profile
       }
     }
     ctx.body = {

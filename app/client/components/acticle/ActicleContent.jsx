@@ -16,8 +16,7 @@ class ActicleContent extends PureComponent {
     if (article && !article.content) {
       return (
         <div className="markdown-body">
-          加载中... &nbsp;&nbsp;&nbsp;
-          <Spin />
+          加载中... 
         </div>
       );
     }

@@ -17,7 +17,6 @@ class QuestionContent extends PureComponent {
       return (
         <div className="markdown-body">
           加载中... &nbsp;&nbsp;&nbsp;
-          <Spin />
         </div>
       );
     }

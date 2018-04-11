@@ -4,8 +4,10 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import QuestionContent from '../components/question/QuestionContent';
+import RecomendedBox from '../components/common/RecomendedBox';
+import SideUser from '../components/common/SideUser';
 import { Link } from 'react-router-dom';
-import { Icon, BackTop } from 'antd'
+import { Icon, BackTop, message, Affix } from 'antd'
 import axios from 'axios';
 import './styles/QuestionDetail.less';
 
@@ -13,6 +15,7 @@ class QuestionDetail extends React.Component {
   constructor() {
     super();
     this.state = {
+      list: [],
       result: {
         question: {
           id: null,
@@ -30,7 +33,8 @@ class QuestionDetail extends React.Component {
           username: null,
           portrait: null,
           email: null,
-          authentication_token: null
+          authentication_token: null,
+          profile: {}
         }
       }
     }
@@ -47,25 +51,35 @@ class QuestionDetail extends React.Component {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        message.error(error.message);
+      });
+    axios.get(`/question/recommended`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            list: response.data.result
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error);
       });
   }
 
   render() {
     let { match } = this.props
-    const adv = {
-      title: 'TensorFlow 官方文档中文版 V1.7',
-      url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: '/public/img/2bd9d875e6e.jpg'
-    }
+    let { user, question } = this.state.result
     return (
       <div className="main">
         <Navigator />
         <div className="center question-detail">
           <section className="question-container">
-            <QuestionContent user={this.state.result.user} question={this.state.result.question}/>
+            <QuestionContent user={user} question={question} />
             <div className="aside">
-              <Advertisement Ad={adv} />
+              <Affix offsetTop={10}>
+                <SideUser user={user} />
+                {this.state.list.length > 0 ? <RecomendedBox title="你可能还感兴趣的问答" type="question" list={this.state.list} /> : null}
+              </Affix>
             </div>
           </section>
         </div>

@@ -101,6 +101,11 @@ async function getAnArticle(ctx) {
         id: article.UserId
       }
     })
+    let profile = await Models.Profile.findOne({
+      where: {
+        UserId: user.id
+      }
+    })
     result = {
       article: article,
       user: {
@@ -109,8 +114,9 @@ async function getAnArticle(ctx) {
         username: user.usename,
         portrait: user.portrait,
         email: user.email,
-        authentication_token: user.authentication_token
-      }
+        authentication_token: user.authentication_token,
+        profile: profile
+      },
     }
     ctx.body = {
       status: true,

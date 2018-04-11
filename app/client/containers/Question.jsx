@@ -49,7 +49,7 @@ class Question extends React.Component {
             <div className="aside">
               <Affix offsetTop={10}>
                 <Advertisement Ad={adv[0]} />
-                {this.state.list.length > 0 ? <RecomendedBox title="你可能感兴趣的问答" list={this.state.list} /> : null}
+                {this.state.list.length > 0 ? <RecomendedBox title="你可能感兴趣的问答" type="question" list={this.state.list} /> : null}
               </Affix>
             </div>
           </section>

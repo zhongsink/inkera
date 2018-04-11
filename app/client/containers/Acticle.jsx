@@ -4,8 +4,10 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import ActicleContent from '../components/acticle/ActicleContent';
+import RecomendedBox from '../components/common/RecomendedBox';
+import SideUser from '../components/common/SideUser';
 import { Link } from 'react-router-dom';
-import { Icon, BackTop } from 'antd'
+import { Icon, BackTop, Affix, message } from 'antd'
 import axios from 'axios';
 import './styles/Acticle.less';
 
@@ -13,6 +15,7 @@ class Acticle extends React.Component {
   constructor() {
     super();
     this.state = {
+      list: [],
       result: {
         article: {
           id: null,
@@ -31,7 +34,8 @@ class Acticle extends React.Component {
           username: null,
           portrait: null,
           email: null,
-          authentication_token: null
+          authentication_token: null,
+          profile: {}
         }
       }
     }
@@ -48,25 +52,35 @@ class Acticle extends React.Component {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        message.error(error);
+      });
+    axios.get(`/article/recommended`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            list: response.data.result
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error);
       });
   }
 
   render() {
     let { match } = this.props
-    const adv = {
-      title: 'TensorFlow 官方文档中文版 V1.7',
-      url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: '/public/img/2bd9d875e6e.jpg'
-    }
+    let { user, article } = this.state.result
     return (
       <div className="main">
         <Navigator />
         <div className="center article">
           <section className="article-container">
-            <ActicleContent user={this.state.result.user} article={this.state.result.article}/>
+            <ActicleContent user={user} article={article} />
             <div className="aside">
-              <Advertisement Ad={adv} />
+              <Affix offsetTop={10}>
+                <SideUser user={user} />
+                {this.state.list.length > 0 ? <RecomendedBox title="你可能还感兴趣的文章" type="article" list={this.state.list} /> : null}
+              </Affix>
             </div>
           </section>
         </div>
