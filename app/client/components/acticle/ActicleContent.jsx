@@ -37,7 +37,6 @@ class ActicleContent extends PureComponent {
               size={40}
               src={user.portrait}
               textSizeRatio={2}
-              round={true}
             />
           </Link>
           <div className="author-info-box">
@@ -45,7 +44,7 @@ class ActicleContent extends PureComponent {
               {user.name}
             </Link>
             <span className="time">
-              {time}
+              创建于 {time}
             </span>
           </div>
         </div>

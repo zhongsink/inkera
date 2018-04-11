@@ -93,6 +93,7 @@ async function getCurrentUser(ctx) {
       if (user && profile[0]) {
         currentUser = {
           login: true,
+          id: user.id,
           name: user.name,
           usename: user.usename,
           email: user.email,

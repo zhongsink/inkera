@@ -20,8 +20,8 @@ class SideUser extends PureComponent {
             <Link to={`/user/${user.authentication_token}`}>
               <Avatar
                 name={user.name}
-                size={32}
-                textSizeRatio={1.75}
+                size={40}
+                textSizeRatio={2}
                 src={user.portrait}
               />
             </Link>
@@ -31,7 +31,7 @@ class SideUser extends PureComponent {
             </div>
           </div>
           <div className="user-introduction">
-            座右铭：{user.profile.introduction}
+            介绍：{user.profile.introduction}
           </div>
         </div>
       </div>

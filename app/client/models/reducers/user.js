@@ -2,6 +2,7 @@ import createReducer from './createReducer';
 
 const initialState = {
   login: false,
+  id: undefined,
   name: undefined,
   usename: undefined,
   email: undefined,

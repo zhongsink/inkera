@@ -33,11 +33,13 @@ export const routes = [
   {
     key: 'article',
     path: '/article/:id',
+    exact: true,
     component: universal(import('../containers/Acticle')),
   },
   {
     key: 'question_detail',
     path: '/question/:id',
+    exact: true,
     component: universal(import('../containers/QuestionDetail')),
   },
   {
@@ -86,7 +88,12 @@ export const routes = [
       const query = parse(url).query;
       return dispatch(listRepositories({ query }));
     },
-  }
+  },
+  {
+    key: 'NoMatch',
+    path: '*',
+    component: universal(import('../containers/NoMatch')),
+  },
 ];
 
 export default () => (
