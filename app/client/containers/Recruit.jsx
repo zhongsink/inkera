@@ -13,11 +13,17 @@ class Recruit extends React.Component {
     super();
   }
   render() {
-    const adv = {
+    const adv = [{
       title: 'TensorFlow 官方文档中文版 V1.7',
       url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: 'https://user-gold-cdn.xitu.io/1521811593412752566594ff74d779e3c92bd9d875e6e.jpg?imageView2/1/q/85/format/webp/interlace/1'
+      imgUrl: '/public/img/2bd9d875e6e.jpg'
+    },
+    {
+      title: '腾讯云　容器服务 CCS',
+      url: 'https://cloud.tencent.com/product/ccs',
+      imgUrl: '/public/img/6c80707.jpg'
     }
+    ]
     return (
       <div className="main">
         <Navigator current='recruit'/>
@@ -25,7 +31,8 @@ class Recruit extends React.Component {
           <section className="list-container">
             <List/>
             <div className="aside">
-              <Advertisement Ad={adv}/>
+              <Advertisement Ad={adv[0]}/>
+              <Advertisement Ad={adv[1]}/>
             </div>
           </section>
         </div>

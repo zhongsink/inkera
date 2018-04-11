@@ -19,7 +19,7 @@ class Login extends React.Component {
       const adv = {
         title: 'TensorFlow 官方文档中文版 V1.7',
         url: 'https://github.com/xitu/tensorflow-docs',
-        imgUrl: 'https://user-gold-cdn.xitu.io/1521811593412752566594ff74d779e3c92bd9d875e6e.jpg?imageView2/1/q/85/format/webp/interlace/1'
+        imgUrl: '/public/img/2bd9d875e6e.jpg'
       }
       return (
         <div className="main">

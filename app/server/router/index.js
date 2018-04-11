@@ -18,6 +18,7 @@ router.post('/article/add',articleController.addArtcle);
 router.delete('/article/delete',articleController.delArtcle);
 router.get('/article/get',articleController.getAnArticle);
 router.post('/article/update',articleController.updateArtcle);
+router.get('/article/recommended',articleController.recommendedArticles);
 
 router.get('/question/list',questionController.getAllQuestion);
 router.post('/question/add',questionController.addQuestion);

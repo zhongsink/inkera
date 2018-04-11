@@ -185,13 +185,36 @@ async function updateArtcle(ctx) {
   }
   ctx.status = 200;
 }
+async function recommendedArticles(ctx) {
+  try {
+    let articles = await Models.Article.findAll({
+      limit: 5,
+      order: [
+        ['heats', 'DESC']
+      ]
+    });
+    ctx.body = {
+      status: true,
+      result: articles
+    }
+  } catch (error) {
+    Logger.error(error.message);
+    ctx.body = {
+      status: false,
+      message: '查询失败'
+    }
+  }
+  ctx.status = 200;
+}
+
 
 let article = {
   getAllArtcle,
   getAnArticle,
   addArtcle,
   delArtcle,
-  updateArtcle
+  updateArtcle,
+  recommendedArticles
 }
 
 module.exports = article

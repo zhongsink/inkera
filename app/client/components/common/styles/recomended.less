@@ -1,0 +1,34 @@
+.recomended-box {
+    position: relative;
+    margin-bottom: 1.3rem;
+    background: #fff;
+    border-radius: 2px;
+    width: 240px;
+    .block-title {
+        padding: 1rem 1.3rem;
+        font-size: 1.16rem;
+        color: #333;
+        border-bottom: 1px solid hsla(0, 0%, 59%, .1);
+    }
+    .block-body {
+        padding: 0 1.3rem;
+        .body-item-title {
+            font-size: 1.16rem;
+            color: #333;
+        }
+        .entry-list-item {
+            padding-bottom: 1rem;
+            &:first-child, &:last-child {
+                padding: 1rem 0;
+            }
+            a {
+                word-break: break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+}
