@@ -10,19 +10,11 @@ module.exports = {
       },
       ArticleId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Articles',
-          key: 'id'
-        }
+        allowNull: false
       },
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,

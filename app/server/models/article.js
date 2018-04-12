@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        models.Article.hasMany(models.Like);
+        // models.Article.hasMany(models.Like);
       }
     }
   });
