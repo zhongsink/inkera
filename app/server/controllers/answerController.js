@@ -1,6 +1,35 @@
 const Models = require('../models');
 const Logger = require('../utils/Logger');
 
+async function findAnswers(params) {
+  let result = [];
+  let answers = await Models.Answer.findAll({
+    where: {
+      QuestionId: params.ques
+    },
+    order: [
+      ['id', 'DESC']
+    ]
+  });
+  for (let answer of answers) {
+    user = await Models.User.findOne({
+      where: {
+        id: answer.UserId
+      }
+    })
+    result.push({
+      answer,
+      user: {
+        id: user.id,
+        name: user.name,
+        username: user.usename,
+        portrait: user.portrait,
+        authentication_token: user.authentication_token
+      }
+    });
+  }
+  return result;
+}
 /**
  * content: DataTypes.TEXT,
  * QuestionId: DataTypes.INTEGER,
@@ -11,42 +40,40 @@ async function addAnswer(ctx) {
   try {
     await Models.Answer.create({
       content: body.content,
-      QuestionId: body.questionId,
+      QuestionId: body.id,
       UserId: body.userId
     });
+    let result = await findAnswers({
+      ques: body.id,
+    })
     ctx.body = {
       status: true,
-      message: '新建成功'
+      list: result
     }
   } catch (error) {
     Logger.error(`add an answer: ${error.message}`);
     ctx.body = {
-      status: false,
-      message: '新建失败'
+      status: false
     }
   }
+  ctx.status = 200;
 }
 
 /**
  * QuestionId: DataTypes.INTEGER,
  */
-async function AllAnswerInQuestion(ctx) {
-  let body = ctx.request.body;
+async function allAnswer(ctx) {
+  let params = ctx.query;
   try {
-    answers = await Models.Answer.findAll({
-      where: {
-        QuestionId: body.questionId
-      }
-    });
+    let result = await findAnswers(params)
     ctx.body = {
       status: true,
-      list: answers
+      list: result
     }
   } catch (error) {
     Logger.error(`answer: ${error.message}`);
     ctx.body = {
-      status: false,
-      message: '数据库查询失败'
+      status: false
     };
   }
   ctx.status = 200;
@@ -54,7 +81,7 @@ async function AllAnswerInQuestion(ctx) {
 
 let answer = {
   addAnswer,
-  AllAnswerInQuestion
+  allAnswer
 }
 
 module.exports = answer

@@ -75,7 +75,7 @@ class Acticle extends React.Component {
         <Navigator />
         <div className="center article">
           <section className="article-container">
-            <ActicleContent user={user} article={article} />
+            <ActicleContent user={user} article={article} match={match} />
             <div className="aside">
               <Affix offsetTop={10}>
                 <SideUser user={user} />

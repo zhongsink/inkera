@@ -74,7 +74,7 @@ class QuestionDetail extends React.Component {
         <Navigator />
         <div className="center question-detail">
           <section className="question-container">
-            <QuestionContent user={user} question={question} />
+            <QuestionContent user={user} question={question} match={match}/>
             <div className="aside">
               <Affix offsetTop={10}>
                 <SideUser user={user} />

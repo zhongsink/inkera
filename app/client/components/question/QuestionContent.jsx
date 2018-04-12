@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { Spin } from 'antd';
 import Markdown from '../common/Markdown';
+import { connect } from 'react-redux';
+import CommentBox from '../common/CommentBox';
 
 class QuestionContent extends PureComponent {
   constructor() {
@@ -26,7 +28,7 @@ class QuestionContent extends PureComponent {
   };
 
   render() {
-    let { user, question } = this.props
+    let { user, question, currentUser, match } = this.props
     let time = new String(question.createdAt).slice(0,10);
     return (
       <div className="question-detail">
@@ -50,9 +52,11 @@ class QuestionContent extends PureComponent {
         </div>
         <h1 className="article-title">{question.title}</h1>
         {this.renderMarkdown()}
+        <CommentBox postUrl="/answer/add" getUrl={`/answer/list?ques=${match.params.id}`} title="回复" user={currentUser} match={match}/>
       </div>
     )
   }
 }
 
-export default QuestionContent;
+const mapStateToProps = state => ({ currentUser: state.user });
+export default connect(mapStateToProps)(QuestionContent);

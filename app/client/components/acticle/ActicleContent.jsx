@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import Avatar from 'react-avatar';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { Spin } from 'antd';
 import Markdown from '../common/Markdown';
+import CommentBox from '../common/CommentBox';
 
 class ActicleContent extends PureComponent {
   constructor() {
@@ -26,7 +28,7 @@ class ActicleContent extends PureComponent {
   };
 
   render() {
-    let { user, article } = this.props
+    let { user, article, currentUser, match } = this.props
     let time = new String(article.createdAt).slice(0,10);
     return (
       <div className="article-detail">
@@ -50,9 +52,11 @@ class ActicleContent extends PureComponent {
         </div>
         <h1 className="article-title">{article.title}</h1>
         {this.renderMarkdown()}
+        <CommentBox postUrl="/comment/add" getUrl={`/comment/list?article=${match.params.id}`} title="评论" user={currentUser} match={match}/>
       </div>
     )
   }
 }
 
-export default ActicleContent;
+const mapStateToProps = state => ({ currentUser: state.user });
+export default connect(mapStateToProps)(ActicleContent);
