@@ -1,12 +1,30 @@
 import React, { PureComponent } from 'react';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
-import { Dropdown, Menu, Icon } from 'antd'
+import { Dropdown, Menu, Icon, message } from 'antd';
+import axios from 'axios';
 
 class Logined extends PureComponent {
   constructor() {
     super()
   }
+
+  logout() {
+    axios.delete('/logout', {
+      data: {
+        _csrf: document.querySelector("meta[name=csrf-token]").content
+      }
+    }).then((response) => {
+      if (response.data.status) {
+        message.success('账户登出成功');
+        location.href = '/';
+      }
+    }).catch((error) => {
+      message.success('账户登出失败');
+    })
+
+  }
+
   render() {
     const user = this.props.user;
     const SubMenu = Menu.SubMenu;
@@ -46,7 +64,7 @@ class Logined extends PureComponent {
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <a className="signout">
+          <a className="signout" onClick={this.logout.bind(this)}>
             <Icon type="logout" />
             &nbsp;&nbsp;登出
           </a>
