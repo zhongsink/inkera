@@ -137,6 +137,10 @@ async function getUserInfo(ctx) {
   let tooken = ctx.query.hash
   let user = null,
     profile = null,
+    articles = [],
+    questions = [],
+    likeArticles = [],
+    like = [],
     userObj = {};
   try {
     user = await Models.User.findOne({
@@ -148,7 +152,49 @@ async function getUserInfo(ctx) {
       where: {
         UserId: user.id
       }
+    });
+    like = await Models.Like.findAll({
+      where: {
+        UserId: user.id
+      },
+      order: [
+        ['id', 'DESC']
+      ]
+    });
+    likeArticles = await Models.Article.findAll({
+      where: {
+        id: like.map(v => {return v.ArticleId})
+      },
+      order: [
+        ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'createdAt'
+      ]
+    });
+    articles = await Models.Article.findAll({
+      where: {
+        UserId: user.id
+      },
+      order: [
+        ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'createdAt'
+      ]
     })
+    questions = await Models.Question.findAll({
+      where: {
+        UserId: user.id
+      },
+      order: [
+        ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'createdAt'
+      ]
+    })
+
     if (user && profile) {
       userObj = {
         id: user.id,
@@ -166,7 +212,10 @@ async function getUserInfo(ctx) {
       }
       ctx.body = {
         status: 1,
-        user: userObj
+        user: userObj,
+        articles,
+        questions,
+        likeArticles
       };
     } else {
       ctx.body = {

@@ -27,7 +27,10 @@ class UserDetail extends React.Component {
         company: undefined,
         introduction: undefined,
         website: undefined,
-      }
+      },
+      articles: [],
+      questions: [],
+      likeArticles: []
     }
     this.renderUserInfo = this.renderUserInfo.bind(this);
   }
@@ -39,7 +42,10 @@ class UserDetail extends React.Component {
       .then(function (response) {
         if (response.data.status) {
           self.setState({
-            userInfo: Object.assign(response.data.user, { asyn: true })
+            userInfo: Object.assign(response.data.user, { asyn: true }),
+            articles: response.data.articles,
+            questions: response.data.questions,
+            likeArticles: response.data.likeArticles,
           });
         }
       })
@@ -65,6 +71,7 @@ class UserDetail extends React.Component {
 
   render() {
     let { match } = this.props
+    let {likeArticles, articles, questions} = this.state
     return (
       <div className="main">
         <Navigator />
@@ -72,10 +79,10 @@ class UserDetail extends React.Component {
           <section className="user-detail">
             <div className="user-detail-container">
               {this.renderUserInfo()}
-              <Tab />
+              <Tab like={likeArticles} articles={articles} questions={questions} />
             </div>
             <div className="aside">
-              <Aside />
+              <Aside like={likeArticles.length} article={articles.length} question={questions.length}/>
             </div>
           </section>
         </div>

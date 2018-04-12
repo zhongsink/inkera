@@ -1,4 +1,7 @@
 @import "~themes/default.less";
+html {
+    overflow-x: hidden;
+}
 .center.user {
     .user-detail {
         display: flex;
@@ -20,6 +23,55 @@
             padding: 5rem 0 6.5rem 0;
             .empty-text {
                 margin-top: 1.2rem;
+            }
+        }
+        .tab-container {
+            margin-bottom: 1.3rem;
+        }
+        .ant-tabs-tabpane .user-list-container {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            .item {
+                display: flex;
+                flex-direction: column;
+                flex: 1 1 auto;
+                padding: 1.667rem 2.4rem;
+                &:hover {
+                    background-color: hsla(0, 0%, 87%, .1);
+                }
+                &:not(:last-child) {
+                    border-bottom: 1px solid hsla(240, 2%, 90%, .5);
+                }
+            }
+            .meta-box {
+                display: flex;
+                flex-direction: row;
+                .action,
+                .date {
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                    color: #b2bac2;
+                }
+                .date {
+                    flex: 1 1 auto;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+            .content-entry {
+                display: flex;
+                justify-content: flex-start;
+                padding: 1.25rem;
+                margin-top: 1rem;
+                background-color: #fdfdfd;
+                border: 1px solid #f2f2f2;
+                border-radius: 2px;
+                .object-title {
+                    font-size: 1.333rem;
+                    font-weight: 600;
+                    color: #2e3135;
+                }
             }
         }
         .action-box {
@@ -92,6 +144,9 @@
         }
     }
     @media (max-width: 600px) {
+        .ant-tabs-nav .ant-tabs-tab {
+            margin: 0 1rem 0 0;
+        }
         .tab-container {
             margin-top: 1.3rem;
             background: #fff;
@@ -185,10 +240,12 @@
                 .more-block {
                     margin-top: 1.3rem;
                     &>.item {
-                        border-top: 1px solid hsla(240,2%,90%,.5);
+                        border-top: 1px solid hsla(240, 2%, 90%, .5);
                         padding: .5rem;
                     }
-                    &>.item, .item-title, .item-content {
+                    &>.item,
+                    .item-title,
+                    .item-content {
                         display: flex;
                         flex: 1 1 auto;
                         font-size: 1.3rem;
