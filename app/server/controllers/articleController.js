@@ -4,20 +4,32 @@ const Logger = require('../utils/Logger');
 async function getAllArtcle(ctx) {
   let page = ctx.query.page || 1;
   let result = [];
+  let userArray = [];
+
   try {
     let articles = await Models.Article.findAll({
       offset: 20 * (page - 1),
       limit: 20,
       order: [
         ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'lable', 'check', 'heats', 'UserId', 'createdAt'
       ]
     });
+
     for (let article of articles) {
-      user = await Models.User.findOne({
-        where: {
-          id: article.UserId
-        }
-      })
+      let user;
+      if (userArray[article.UserId]) {
+        user= userArray[article.UserId]
+      } else {
+        userArray[article.UserId] = user = await Models.User.findOne({
+          where: {
+            id: article.UserId
+          }
+        })
+      }
+
       result.push({
         article,
         user: {
@@ -28,6 +40,7 @@ async function getAllArtcle(ctx) {
           authentication_token: user.authentication_token
         }
       });
+
     }
     ctx.body = {
       status: true,
@@ -56,9 +69,11 @@ async function getAllArtcle(ctx) {
 async function addArtcle(ctx) {
   let body = ctx.request.body;
   try {
-    let user = await Models.User.findOne({where:{
-      authentication_token: body.authentication_token
-    }});
+    let user = await Models.User.findOne({
+      where: {
+        authentication_token: body.authentication_token
+      }
+    });
     let params = {
       title: body.title,
       content: body.content,
@@ -198,6 +213,9 @@ async function recommendedArticles(ctx) {
       order: [
         ['heats', 'DESC'],
         ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'lable', 'check', 'heats', 'UserId', 'createdAt'
       ]
     });
     ctx.body = {

@@ -4,21 +4,34 @@ const Logger = require('../utils/Logger');
 async function getAllQuestion(ctx) {
   let page = ctx.query.page || 1;
   let result = [];
+  let userArray = [];
   try {
     let questions = await Models.Question.findAll({
       offset: 20 * (page - 1),
       limit: 20,
-      order: [['id', 'DESC']]
+      order: [
+        ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'check', 'heats', 'UserId', 'createdAt'
+      ]
     });
-    for(let question of questions) {
-      user = await Models.User.findOne({
-        where: {
-          id: question.UserId
-        }
-      })
+
+    for (let question of questions) {
+      let user;
+      if (userArray[question.UserId]) {
+        user = userArray[question.UserId]
+      } else {
+        userArray[question.UserId] = user = await Models.User.findOne({
+          where: {
+            id: question.UserId
+          }
+        })
+      }
+
       result.push({
         question,
-        user:{
+        user: {
           id: user.id,
           name: user.name,
           username: user.usename,
@@ -26,6 +39,7 @@ async function getAllQuestion(ctx) {
           authentication_token: user.authentication_token
         }
       });
+
     }
     ctx.body = {
       status: true,
@@ -165,6 +179,9 @@ async function recommendedQuestions(ctx) {
       order: [
         ['heats', 'DESC'],
         ['id', 'DESC']
+      ],
+      attributes: [
+        'id', 'title', 'check', 'heats', 'UserId', 'createdAt'
       ]
     });
     ctx.body = {
