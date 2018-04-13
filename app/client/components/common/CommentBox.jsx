@@ -94,7 +94,7 @@ class CommentBox extends PureComponent {
     }
     return (
       <div className="comment-box">
-        <div className="comment-title">{title}</div>
+        <div className="comment-title" id="comment">{title}</div>
         {user.login ? <CommentForm /> : null}
         <div className="comment-list">
           {this.state.list.length > 0 ? this.renderComments() : null}

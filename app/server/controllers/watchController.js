@@ -61,15 +61,16 @@ async function allWatchs(ctx) {
     let wacths = await watchsList({
       article: params.article
     });
-    let hasWatch = await Models.Like.findAll({
-      where: {
-        ArticleId: params.article,
-        UserId: params.user
-      }
-    })
+    let hasWatch = params.user ?
+      await Models.Like.findAll({
+        where: {
+          ArticleId: params.article,
+          UserId: params.user
+        }
+      }) : []
     ctx.body = {
       status: true,
-      wacth: JSON.stringify(hasWatch) !== '{}' ? true : false,
+      wacth: JSON.stringify(hasWatch) !== '[]' ? true : false,
       number: wacths
     }
   } catch (error) {

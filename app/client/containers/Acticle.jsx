@@ -4,6 +4,7 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import ActicleContent from '../components/acticle/ActicleContent';
+import SuspendedPanel from '../components/acticle/SuspendedPanel';
 import RecomendedBox from '../components/common/RecomendedBox';
 import SideUser from '../components/common/SideUser';
 import { Link } from 'react-router-dom';
@@ -82,6 +83,7 @@ class Acticle extends React.Component {
                 {this.state.list.length > 0 ? <RecomendedBox title="你可能还感兴趣的文章" type="article" list={this.state.list} /> : null}
               </Affix>
             </div>
+            <SuspendedPanel match={match}/>
           </section>
         </div>
         <BackTop />
