@@ -90,6 +90,11 @@ export const routes = [
     },
   },
   {
+    key: 'admin',
+    path: '/jscode/admin',
+    component: universal(import('../containers/Admin')),
+  },
+  {
     key: 'NoMatch',
     path: '*',
     component: universal(import('../containers/NoMatch')),
