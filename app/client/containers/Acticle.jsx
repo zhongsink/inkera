@@ -58,7 +58,8 @@ class Acticle extends React.Component {
     let self = this;
     let { match } = this.props
     this.props.history.listen((route) => {
-      getArticle(self, route.pathname.slice(9));
+      if(route.pathname.indexOf('/article/') === 0)
+        getArticle(self, route.pathname.slice(9));
     });
     getArticle(self, match.params.id);
 

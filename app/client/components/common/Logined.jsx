@@ -44,16 +44,16 @@ class Logined extends PureComponent {
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <a href={`/user/${user.authentication_token}`}>
+          <Link to={`/user/${user.authentication_token}`}>
             <Icon type="user" />
             &nbsp;&nbsp;我的主页
-          </a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <a href={`/user/${user.authentication_token}`}>
+          <Link to={`/user/${user.authentication_token}`}>
             <Icon type="heart" />
             &nbsp;&nbsp;我喜欢的
-          </a>
+          </Link>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>

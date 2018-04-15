@@ -11,6 +11,19 @@ import { Icon, BackTop, message, Affix } from 'antd'
 import axios from 'axios';
 import './styles/QuestionDetail.less';
 
+const getQuestion = (self, str)=> {
+  axios.get(`/question/get?id=${str}`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            result: response.data.result
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error.message);
+      });
+}
 class QuestionDetail extends React.Component {
   constructor() {
     super();
@@ -42,6 +55,11 @@ class QuestionDetail extends React.Component {
   componentDidMount() {
     let self = this;
     let { match } = this.props
+    getQuestion(self, match.params.id);
+    this.props.history.listen((route) => {
+      if(route.pathname.indexOf('/question/') === 0)
+        getQuestion(self, route.pathname.slice(10));
+    });
     axios.get(`/question/get?id=${match.params.id}`)
       .then(function (response) {
         if (response.data.status) {

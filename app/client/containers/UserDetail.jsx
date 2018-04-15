@@ -3,13 +3,29 @@ import { connect } from 'react-redux';
 import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import { Link } from 'react-router-dom';
-import { Icon, BackTop, Spin } from 'antd'
+import { Icon, BackTop, Spin, message } from 'antd'
 import axios from 'axios';
 import UserInfo from '../components/user/UserInfo';
 import Aside from '../components/user/Aside';
 import Tab from '../components/user/Tab';
 import './styles/UserDetail.less';
 
+const getUserInfo = (self, str)=> {
+  axios.get(`/getUserInfo?hash=${str}`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            userInfo: Object.assign(response.data.user, { asyn: true }),
+            articles: response.data.articles,
+            questions: response.data.questions,
+            likeArticles: response.data.likeArticles,
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error);
+      });
+}
 class UserDetail extends React.Component {
   constructor() {
     super();
@@ -38,20 +54,11 @@ class UserDetail extends React.Component {
   componentDidMount() {
     let { match } = this.props
     let self = this;
-    axios.get(`/getUserInfo?hash=${match.params.hash}`)
-      .then(function (response) {
-        if (response.data.status) {
-          self.setState({
-            userInfo: Object.assign(response.data.user, { asyn: true }),
-            articles: response.data.articles,
-            questions: response.data.questions,
-            likeArticles: response.data.likeArticles,
-          });
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    getUserInfo(self, match.params.hash)
+    this.props.history.listen((route) => {
+      if(route.pathname.indexOf('/user/') === 0)
+        getUserInfo(self, route.pathname.slice(6));
+    });
   }
   renderUserInfo() {
     let userInfo = this.state.userInfo;
