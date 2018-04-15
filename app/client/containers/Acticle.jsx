@@ -12,6 +12,19 @@ import { Icon, BackTop, Affix, message } from 'antd'
 import axios from 'axios';
 import './styles/Acticle.less';
 
+let getArticle = (self, str) => {
+  axios.get(`/article/get?id=${str}`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            result: response.data.result
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error);
+      });
+}
 class Acticle extends React.Component {
   constructor() {
     super();
@@ -44,17 +57,11 @@ class Acticle extends React.Component {
   componentDidMount() {
     let self = this;
     let { match } = this.props
-    axios.get(`/article/get?id=${match.params.id}`)
-      .then(function (response) {
-        if (response.data.status) {
-          self.setState({
-            result: response.data.result
-          });
-        }
-      })
-      .catch(function (error) {
-        message.error(error);
-      });
+    this.props.history.listen((route) => {
+      getArticle(self, route.pathname.slice(9));
+    });
+    getArticle(self, match.params.id);
+
     axios.get(`/article/recommended`)
       .then(function (response) {
         if (response.data.status) {
@@ -83,7 +90,7 @@ class Acticle extends React.Component {
                 {this.state.list.length > 0 ? <RecomendedBox title="你可能还感兴趣的文章" type="article" list={this.state.list} /> : null}
               </Affix>
             </div>
-            <SuspendedPanel match={match}/>
+            <SuspendedPanel match={match} />
           </section>
         </div>
         <BackTop />

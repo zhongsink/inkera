@@ -11,9 +11,9 @@ class RecomendedBox extends PureComponent {
     const { list, type } = this.props;
     return list.map((item, index) =>
       <div key={index} className="entry-list-item">
-        <a href={`/${type}/${item.id}`} className="body-item-title">
+        <Link to={`/${type}/${item.id}`} className="body-item-title">
           {item.title}
-        </a>
+        </Link>
       </div>
     )
   }
