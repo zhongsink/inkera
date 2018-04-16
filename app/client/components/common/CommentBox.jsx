@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
-import { Button, message } from 'antd';
+import { Button, message, Input } from 'antd';
 import axios from 'axios';
 import CommentItem from './CommentItem';
+const { TextArea } = Input;
 import './styles/CommentBox.less';
 
 class CommentBox extends PureComponent {
@@ -78,13 +79,12 @@ class CommentBox extends PureComponent {
             />
           </div>
           <div className="comment-send">
-            <textarea
+            <TextArea
               id="comment-input"
               placeholder="说说你的看法"
               className="content-input"
-              autoCapitalize="off"
-            >
-            </textarea>
+              autosize={{ minRows: 3 }}
+            />
             <div className="comment-action-box">
               <Button type="primary" onClick={this.comment.bind(this)}>{title}</Button>
             </div>

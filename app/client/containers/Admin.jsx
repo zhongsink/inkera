@@ -1,8 +1,46 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Switch, Route, Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu; 
+const SubMenu = Menu.SubMenu;
 import './styles/Admin.less'
+
+const Home = () => {
+  return (
+    <Content style={{ margin: '0 16px' }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item><Link to='/jscode/admin/roster'>Roster</Link></Breadcrumb.Item>
+        <Breadcrumb.Item><Link to='/jscode/admin/schedule'>Schedule</Link></Breadcrumb.Item>
+      </Breadcrumb>
+      <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+        Bill is a Home.
+      </div>
+    </Content>
+  )
+}
+const Roster = () => {
+  return (
+    <Content style={{ margin: '0 16px' }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item><Link to='/jscode/admin/roster'>Roster</Link></Breadcrumb.Item>
+        <Breadcrumb.Item><Link to='/jscode/admin/schedule'>Schedule</Link></Breadcrumb.Item>
+      </Breadcrumb>
+      <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+        Roster
+      </div>
+    </Content>
+  )
+}
+
+const Schedule = () => {
+  return (
+    <Content style={{ margin: '0 16px' }}>
+      <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+        Schedule
+      </div>
+    </Content>
+  )
+}
 
 class Admin extends React.Component {
   state = {
@@ -16,7 +54,9 @@ class Admin extends React.Component {
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Header className="header">
-          <div className="logo" />
+          <div className="logo">
+            <img src="/public/img/logo_w.png" alt="logo" style={{width: 'auto', height: '50px'}}/>
+          </div>
           <Menu
             theme="dark"
             mode="horizontal"
@@ -35,15 +75,15 @@ class Admin extends React.Component {
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1">
                 <Icon type="pie-chart" />
-                <span>Option 1</span>
+                <span>用户管理</span>
               </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="desktop" />
-                <span>Option 2</span>
+                <span>文章管理</span>
               </Menu.Item>
               <SubMenu
                 key="sub1"
-                title={<span><Icon type="user" /><span>User</span></span>}
+                title={<span><Icon type="user" /><span>问答管理</span></span>}
               >
                 <Menu.Item key="3">Tom</Menu.Item>
                 <Menu.Item key="4">Bill</Menu.Item>
@@ -51,29 +91,25 @@ class Admin extends React.Component {
               </SubMenu>
               <SubMenu
                 key="sub2"
-                title={<span><Icon type="team" /><span>Team</span></span>}
+                title={<span><Icon type="team" /><span>广告管理</span></span>}
               >
                 <Menu.Item key="6">Team 1</Menu.Item>
                 <Menu.Item key="8">Team 2</Menu.Item>
               </SubMenu>
               <Menu.Item key="9">
                 <Icon type="file" />
-                <span>File</span>
+                <span>设置</span>
               </Menu.Item>
             </Menu>
           </Sider>
           <Layout>
-            <Content style={{ margin: '0 16px' }}>
-              <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
-              </Breadcrumb>
-              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                Bill is a cat.
-            </div>
-            </Content>
+            <Switch>
+              <Route exact path='/jscode/admin' component={Home} />
+              <Route path='/jscode/admin/roster' component={Roster} />
+              <Route path='/jscode/admin/schedule' component={Schedule} />
+            </Switch>
             <Footer style={{ textAlign: 'center' }}>
-              Ant Design ©2016 Created by Ant UED
+              jscode ©2018 Created by inkera UED
           </Footer>
           </Layout>
         </Layout>
