@@ -184,7 +184,7 @@ async function delArtcle(ctx) {
  * }
  */
 async function updateArtcle(ctx) {
-  let body = ctx.request.body;;
+  let body = ctx.request.body;
   try {
     await Models.Article.update({
       content: body.content
