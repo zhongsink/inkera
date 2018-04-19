@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Layout, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
-class Question extends PureComponent {
+class Recuit extends PureComponent {
   render() {
     return (
       <Content>
-        Question
+        Recuit
       </Content>
     )
   }
 }
 
-export default Question;
+export default Recuit;
