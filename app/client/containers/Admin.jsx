@@ -59,28 +59,28 @@ class Admin extends React.Component {
               </SubMenu>
               <SubMenu
                 key="sub1"
-                title={<span><Icon type="question-circle-o" /><span>问答管理</span></span>}
+                title={<span><Icon type="exception" /><span>问答管理</span></span>}
               >
                 <Menu.Item key="3"><Link to="/jscode/admin/question">最新列表</Link></Menu.Item>
                 <Menu.Item key="4">搜索问答</Menu.Item>
               </SubMenu>
               <SubMenu
                 key="sub3"
-                title={<span><Icon type="question-circle-o" /><span>招聘管理</span></span>}
+                title={<span><Icon type="usergroup-add" /><span>招聘管理</span></span>}
               >
                 <Menu.Item key="7"><Link to="/jscode/admin/recuit">最新列表</Link></Menu.Item>
                 <Menu.Item key="10">录入信息</Menu.Item>
               </SubMenu>
               <SubMenu
                 key="sub2"
-                title={<span><Icon type="team" /><span>广告管理</span></span>}
+                title={<span><Icon type="notification" /><span>广告管理</span></span>}
               >
                 <Menu.Item key="6"><Link to="/jscode/admin/ad">投放广告</Link></Menu.Item>
                 <Menu.Item key="8"><Link to="/jscode/admin/ad">更新广告</Link></Menu.Item>
               </SubMenu>
               <Menu.Item key="9">
                 <Link to="/jscode/admin/setting">
-                  <Icon type="file" />
+                  <Icon type="setting" />
                   <span>设置</span>
                 </Link>
               </Menu.Item>
