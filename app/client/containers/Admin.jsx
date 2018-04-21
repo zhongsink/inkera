@@ -30,7 +30,7 @@ class Admin extends React.Component {
             <img src="/public/img/logo_w.png" alt="logo" />
           </div>
           <div className="jscode-user-bar">
-            <span>欢迎　xxxx 管理员</span>
+            <span>欢迎 xxxx 管理员</span>
             <Link to="/">
               <span>返回主站首页</span>
             </Link>
@@ -78,12 +78,12 @@ class Admin extends React.Component {
                 <Menu.Item key="6"><Link to="/jscode/admin/ad">投放广告</Link></Menu.Item>
                 <Menu.Item key="8"><Link to="/jscode/admin/ad">更新广告</Link></Menu.Item>
               </SubMenu>
-              <Menu.Item key="9">
+              {/* <Menu.Item key="9">
                 <Link to="/jscode/admin/setting">
                   <Icon type="setting" />
                   <span>设置</span>
                 </Link>
-              </Menu.Item>
+              </Menu.Item> */}
             </Menu>
           </Sider>
           <Layout>
