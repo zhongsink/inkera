@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Layout, Table, Icon, Divider, message } from 'antd';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -31,13 +32,13 @@ class Article extends PureComponent {
         title: '文章 id',
         dataIndex: 'key',
         key: 'key',
-        render: text => <a href="javascript:;">{text}</a>,
+        render: (text, row, index) => <Link to={`/article/${text}`}>{text}</Link>,
       },
       {
         title: '文章标题',
         dataIndex: 'title',
         key: 'title',
-        render: text => <a href="javascript:;">{text}</a>,
+        render: (text, row, index) => <Link to={`/article/${row.key}`}>{text}</Link>,
       }
       , {
         title: '文章标签',
@@ -47,6 +48,7 @@ class Article extends PureComponent {
         title: '创建者id',
         dataIndex: 'userId',
         key: 'userId',
+        render: (text, row, index) => <Link to={`/jscode/admin`}>{text}</Link>,
       }, {
         title: 'Action',
         key: 'action',

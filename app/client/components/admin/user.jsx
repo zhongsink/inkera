@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Layout, Table, Icon, Divider, message } from 'antd';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -34,7 +35,7 @@ class User extends PureComponent {
       title: '昵称',
       dataIndex: 'name',
       key: 'name',
-      render: text => <a href="javascript:;">{text}</a>,
+      render: (text, row, index) => <Link to={`/user/${row.token}`}>{text}</Link>,
     }, {
       title: '用户名',
       dataIndex: 'username',

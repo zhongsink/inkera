@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Layout, Table, Icon, Divider, message } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 
@@ -33,13 +34,13 @@ class Recuit extends PureComponent {
         title: '招聘 id',
         dataIndex: 'key',
         key: 'key',
-        render: text => <a href="javascript:;">{text}</a>,
+        render: (text, row, index) => <Link to={`/recruit/${text}`}>{text}</Link>,
       },
       {
         title: '招聘标题',
         dataIndex: 'title',
         key: 'title',
-        render: text => <a href="javascript:;">{text}</a>,
+        render: (text, row, index) => <Link to={`/recruit/${row.key}`}>{text}</Link>,
       }, {
         title: '转载何处',
         dataIndex: 'from',
@@ -48,7 +49,7 @@ class Recuit extends PureComponent {
         title: '转载URL',
         dataIndex: 'url',
         key: 'url',
-        render: text => <a href={text}>{text}</a>,
+        render: text => <a href={text} target="_blank">{text}</a>,
       }, {
         title: 'Action',
         key: 'action',
