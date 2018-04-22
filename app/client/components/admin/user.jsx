@@ -103,16 +103,6 @@ class User extends PureComponent {
       title: '用户 token',
       dataIndex: 'token',
       key: 'token',
-    }, {
-      title: '操作',
-      key: 'action',
-      render: (text, record) => (
-        <span>
-          <a href="javascript:;">Action 一 {record.name}</a>
-          <Divider type="vertical" />
-          <a href="javascript:;">删除</a>
-        </span>
-      )
     }];
 
     return (

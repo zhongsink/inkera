@@ -101,7 +101,7 @@ class Recuit extends PureComponent {
         key: 'from',
         render: (text, row, index) => <a href={`${row.url}`} target="_blank">{text}</a>,
       }, {
-        title: 'Action',
+        title: '操作',
         key: 'action',
         render: (text, record) => (
           <span>

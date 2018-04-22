@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     encrypted_password: DataTypes.STRING,
     authentication_token: DataTypes.STRING,
-    portrait: DataTypes.STRING
+    portrait: DataTypes.STRING,
+    role: { type: DataTypes.INTEGER, defaultValue: 0 },
   }, {
     classMethods: {
       associate: function(models) {

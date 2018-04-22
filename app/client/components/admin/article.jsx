@@ -104,7 +104,7 @@ class Article extends PureComponent {
         key: 'userId',
         render: (text, row, index) => <Link to={`/jscode/admin`}>{text}</Link>,
       }, {
-        title: 'Action',
+        title: '操作',
         key: 'action',
         render: (text, record) => (
           <span>
