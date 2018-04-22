@@ -9,6 +9,7 @@ const commentController = require('../controllers/commentController');
 const answerController = require('../controllers/answerController');
 const sessionController = require('../controllers/sesstionController');
 const watchController = require('../controllers/watchController');
+const adminController = require('../controllers/adminController');
 
 let router = new Router();
 
@@ -45,6 +46,8 @@ router.post('/answer/add', answerController.addAnswer);
 
 router.get('/watchs', watchController.allWatchs);
 router.post('/watch/toggle', watchController.toggle);
+
+router.get('/admin/list', adminController.objList);
 
 router.delete('/logout', sessionController.logout);
 

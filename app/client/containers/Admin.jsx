@@ -30,7 +30,7 @@ class Admin extends React.Component {
             <img src="/public/img/logo_w.png" alt="logo" />
           </div>
           <div className="jscode-user-bar">
-            <span>欢迎 xxxx 管理员</span>
+            <span>欢迎 inkera</span>
             <Link to="/">
               <span>返回主站首页</span>
             </Link>
