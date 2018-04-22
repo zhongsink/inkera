@@ -7,6 +7,7 @@ import Question from '../components/admin/question';
 import Recuit from '../components/admin/recuit';
 import Ad from '../components/admin/ad';
 import Setting from '../components/admin/setting';
+import axios from 'axios';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -27,7 +28,9 @@ class Admin extends React.Component {
       >
         <Header className="header">
           <div className="logo">
-            <img src="/public/img/logo_w.png" alt="logo" />
+            <Link to="/">
+              <img src="/public/img/logo_w.png" alt="logo" />
+            </Link>
           </div>
           <div className="jscode-user-bar">
             <span>欢迎 inkera</span>
@@ -50,20 +53,18 @@ class Admin extends React.Component {
                   <span>用户管理</span>
                 </Link>
               </Menu.Item>
-              <SubMenu
-                key="sub"
-                title={<span><Icon type="file-word" /><span>文章管理</span></span>}
-              >
-                <Menu.Item key="2"><Link to="/jscode/admin/article">最新列表</Link></Menu.Item>
-                <Menu.Item key="5">搜索文章</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub1"
-                title={<span><Icon type="exception" /><span>问答管理</span></span>}
-              >
-                <Menu.Item key="3"><Link to="/jscode/admin/question">最新列表</Link></Menu.Item>
-                <Menu.Item key="4">搜索问答</Menu.Item>
-              </SubMenu>
+              <Menu.Item key="2">
+                <Link to="/jscode/admin/article">
+                  <Icon type="file-word" />
+                  <span>文章管理</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/jscode/admin/question">
+                <Icon type="exception" />
+                  <span>问答管理</span>
+                </Link>
+              </Menu.Item>
               <SubMenu
                 key="sub3"
                 title={<span><Icon type="usergroup-add" /><span>招聘管理</span></span>}
@@ -86,7 +87,7 @@ class Admin extends React.Component {
               </Menu.Item> */}
             </Menu>
           </Sider>
-          <Layout>
+          <Layout className="admin-container">
             <Switch>
               <Route exact path='/jscode/admin' component={User} />
               <Route path='/jscode/admin/article' component={Article} />

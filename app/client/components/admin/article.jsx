@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Layout, Table, Icon, Divider, message } from 'antd';
+import { Layout, Table, Icon, Divider, message, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,8 +9,14 @@ class Article extends PureComponent {
   constructor() {
     super();
     this.state = {
-      data: []
-     }
+      data: [],
+      filterData: [],
+      filterDropdownVisible: false,
+      searchText: '',
+      filtered: false,
+    }
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
   componentDidMount() {
     let self = this;
@@ -18,7 +24,8 @@ class Article extends PureComponent {
       .then(function (response) {
         if (response.data.status) {
           self.setState({
-            data: response.data.list
+            data: response.data.list,
+            filterData: response.data.list
           });
         }
       })
@@ -26,19 +33,66 @@ class Article extends PureComponent {
         message.error(error);
       });
   }
+  onInputChange = (e) => {
+    this.setState({ searchText: e.target.value });
+  }
+  onSearch = () => {
+    const { searchText } = this.state;
+    const reg = new RegExp(searchText, 'gi');
+    this.setState({
+      filterDropdownVisible: false,
+      filtered: !!searchText,
+      filterData: this.state.data.map((record) => {
+        const match = record.title.toString().match(reg);
+        if (!match) {
+          return null;
+        }
+        return {
+          ...record,
+          title: (
+            <span>
+              {record.title.toString().split(reg).map((text, i) => (
+                i > 0 ? [<span>{match[0]}</span>, text] : text
+              ))}
+            </span>
+          ),
+        };
+      }).filter(record => !!record),
+    });
+  }
+
   render() {
     const columns = [
       {
         title: '文章 id',
         dataIndex: 'key',
         key: 'key',
-        render: (text, row, index) => <Link to={`/article/${text}`}>{text}</Link>,
+        render: (text, row, index) => <Link to={`/article/${text}`} target="_blank">{text}</Link>,
       },
       {
         title: '文章标题',
         dataIndex: 'title',
         key: 'title',
-        render: (text, row, index) => <Link to={`/article/${row.key}`}>{text}</Link>,
+        render: (text, row, index) => <Link to={`/article/${row.key}`} target="_blank">{text}</Link>,
+        filterDropdown: (
+          <div className="custom-filter-dropdown">
+            <Input
+              ref={ele => this.searchInput = ele}
+              placeholder="Search name"
+              value={this.state.searchText}
+              onChange={this.onInputChange}
+              onPressEnter={this.onSearch}
+            />
+            <Button type="primary" onClick={this.onSearch}>Search</Button>
+          </div>
+        ),
+        filterIcon: <Icon type="smile-o" style={{ color: this.state.filtered ? '#108ee9' : '#aaa' }} />,
+        filterDropdownVisible: this.state.filterDropdownVisible,
+        onFilterDropdownVisibleChange: (visible) => {
+          this.setState({
+            filterDropdownVisible: visible,
+          }, () => this.searchInput && this.searchInput.focus());
+        },
       }
       , {
         title: '文章标签',
@@ -60,12 +114,12 @@ class Article extends PureComponent {
           </span>
         )
       }];
-    
+
     return (
       <Content className="jscode-list-container">
         <Table
           columns={columns}
-          dataSource={this.state.data} />
+          dataSource={this.state.filterData} />
       </Content>
     )
   }
