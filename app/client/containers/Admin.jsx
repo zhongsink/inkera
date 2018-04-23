@@ -6,7 +6,7 @@ import Article from '../components/admin/article';
 import Question from '../components/admin/question';
 import Recuit from '../components/admin/recuit';
 import Ad from '../components/admin/ad';
-import Setting from '../components/admin/setting';
+import RecuitNew from '../components/admin/recuitNew';
 import axios from 'axios';
 import Logined from '../components/common/Logined'
 
@@ -92,7 +92,7 @@ class Admin extends React.Component {
                 title={<span><Icon type="usergroup-add" /><span>招聘管理</span></span>}
               >
                 <Menu.Item key="7"><Link to="/jscode/admin/recuit">最新列表</Link></Menu.Item>
-                <Menu.Item key="10">录入信息</Menu.Item>
+                <Menu.Item key="10"><Link to="/jscode/admin/recuit-new">录入信息</Link></Menu.Item>
               </SubMenu>
               <Menu.Item key="8">
                 <Link to="/jscode/admin/ad">
@@ -115,11 +115,8 @@ class Admin extends React.Component {
               <Route path='/jscode/admin/question' component={Question} />
               <Route path='/jscode/admin/recuit' component={Recuit} />
               <Route path='/jscode/admin/ad' component={Ad} />
-              <Route path='/jscode/admin/setting' component={Setting} />
+              <Route path='/jscode/admin/recuit-new' component={RecuitNew} />
             </Switch>
-            <Footer style={{ textAlign: 'center' }}>
-              jscode ©2018 Created by inkera UED
-          </Footer>
           </Layout>
         </Layout>
       </Layout>

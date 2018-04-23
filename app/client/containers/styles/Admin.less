@@ -1,3 +1,6 @@
+html {
+    font-size: 14px;
+}
 .jscode-admin {
     .header {
         padding: 0 .5rem;
@@ -48,6 +51,75 @@
             margin-right: 8px;
         }
     }
+    .recuit-new {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        .editor-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 8px;
+            height: 50px;
+            min-height: 50px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            z-index: 100;
+            input {
+                display: flex;
+                font-size: 16px;
+                font-weight: 700;
+                color: #000;
+                border: none;
+                outline: none;
+            }
+            .title-input {
+                flex: 1 1 auto;
+            }
+            .right-box {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+            }
+        }
+        .editor-container {
+            display: flex;
+            flex: 1 1 100%;
+            flex-direction: row;
+            .editor-box,
+            .editor-preview {
+                display: flex;
+                flex-direction: column;
+                flex: 1 1 50%;
+            }
+            .editor-preview {
+                background: #fff;
+                padding: 30px;
+                overflow-y: scroll;
+            }
+            .ace_text-input {
+                border: none;
+                background: transparent;
+                display: flex;
+                flex: 1 1 auto;
+                outline: none;
+                padding: 30px;
+                resize: none;
+            }
+            .editor-action {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 8px;
+                background: #fff;
+                .anticon-picture {
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
     .jscode-list-container {
         margin: 24px 32px;
         .advantisement {
@@ -66,7 +138,7 @@
                 width: 100%;
             }
             .ant-btn {
-                width:100%;
+                width: 100%;
             }
         }
         .ad-preview {
@@ -75,6 +147,7 @@
         }
     }
 }
+
 .ant-dropdown .mobile-menu,
 .ant-dropdown .user-bar-menu {
     padding: 5px 0;
