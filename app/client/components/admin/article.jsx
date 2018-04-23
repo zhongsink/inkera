@@ -16,6 +16,8 @@ class Article extends PureComponent {
       filtered: false,
     }
     this.onInputChange = this.onInputChange.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.recommend = this.recommend.bind(this);
     this.onSearch = this.onSearch.bind(this);
   }
   componentDidMount() {
@@ -33,6 +35,39 @@ class Article extends PureComponent {
         message.error(error);
       });
   }
+  deleteItem(e) {
+    axios.delete('/article/delete', {
+      data: {
+        _csrf: document.querySelector("meta[name=csrf-token]").content,
+        id: e.target.getAttribute('data-id')
+      }
+    }).then((response) => {
+      if (response.data.status) {
+        message.success('文章删除成功');
+        location.reload();
+      } else {
+        message.success('文章删除失败');
+      }
+    }).catch((error) => {
+      message.success(error.message);
+    })
+  }
+
+  recommend(e) {
+    axios.post('/article/recommend', {
+      _csrf: document.querySelector("meta[name=csrf-token]").content,
+      id: e.target.getAttribute('data-id')
+    }).then((response) => {
+      if (response.data.status) {
+        message.success('推荐成功');
+      } else {
+        message.success('推荐失败');
+      }
+    }).catch((error) => {
+      message.success(error.message);
+    })
+  }
+
   onInputChange = (e) => {
     this.setState({ searchText: e.target.value });
   }
@@ -108,9 +143,9 @@ class Article extends PureComponent {
         key: 'action',
         render: (text, record) => (
           <span>
-            <a href="javascript:;">删除</a>
+            <a href="javascript:;" data-id={record.key} onClick={this.deleteItem}>删除</a>
             <Divider type="vertical" />
-            <a href="javascript:;">推荐</a>
+            <a href="javascript:;" data-id={record.key} onClick={this.recommend}>推荐</a>
           </span>
         )
       }];

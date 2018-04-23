@@ -153,6 +153,11 @@ async function addQuestion(ctx) {
 async function delQuestion(ctx) {
   let body = ctx.request.body;
   try {
+    await Models.Answer.destroy({
+      where: {
+        QuestionId: body.id
+      }
+    })
     await Models.Question.destroy({
       where: {
         id: body.id
@@ -198,11 +203,36 @@ async function recommendedQuestions(ctx) {
   ctx.status = 200;
 }
 
+async function recommend(ctx){
+  let body = ctx.request.body;
+  try {
+    await Models.Question.update({
+      heats: 10
+    }, {
+      where: {
+        id: body.id
+      }
+    });
+    ctx.body = {
+      status: true,
+      message: '更新成功'
+    }
+  } catch (error) {
+    Logger.error(`update artcle: ${error.message}`)
+    ctx.body = {
+      status: false,
+      message: '更新失败'
+    }
+  }
+  ctx.status = 200;
+}
+
 let question = {
   getAllQuestion,
   getAnQuestion,
   addQuestion,
   delQuestion,
+  recommend,
   recommendedQuestions
 }
 

@@ -23,12 +23,14 @@ router.post('/article/add', articleController.addArtcle);
 router.delete('/article/delete', articleController.delArtcle);
 router.get('/article/get', articleController.getAnArticle);
 router.post('/article/update', articleController.updateArtcle);
+router.post('/article/recommend', articleController.recommend);
 router.get('/article/recommended', articleController.recommendedArticles);
 
 router.get('/question/list', questionController.getAllQuestion);
 router.post('/question/add', questionController.addQuestion);
 router.delete('/question/delete', questionController.delQuestion);
 router.get('/question/get', questionController.getAnQuestion);
+router.post('/question/recommend', questionController.recommend);
 router.get('/question/recommended', questionController.recommendedQuestions);
 
 router.get('/recruit/list', recruitController.getAllRecruit);

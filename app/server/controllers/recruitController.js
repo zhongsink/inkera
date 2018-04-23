@@ -93,11 +93,11 @@ async function addRecruit(ctx) {
  * }
  */
 async function delRecruit(ctx) {
-  let params = ctx.query;
+  let body = ctx.request.body;
   try {
     await Models.Recruit.destroy({
       where: {
-        id: params.id
+        id: body.id
       }
     })
     ctx.body = {

@@ -16,7 +16,26 @@ class Recuit extends PureComponent {
       filtered: false,
     }
     this.onInputChange = this.onInputChange.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
     this.onSearch = this.onSearch.bind(this);
+  }
+
+  deleteItem(e) {
+    axios.delete('/recruit/delete', {
+      data: {
+        _csrf: document.querySelector("meta[name=csrf-token]").content,
+        id: e.target.getAttribute('data-id')
+      }
+    }).then((response) => {
+      if (response.data.status) {
+        message.success('招聘信息删除成功');
+        location.reload();
+      }else {
+        message.success('招聘信息删除失败');
+      }
+    }).catch((error) => {
+      message.success(error.message);
+    })
   }
 
   componentDidMount() {
@@ -69,13 +88,13 @@ class Recuit extends PureComponent {
         title: '招聘 id',
         dataIndex: 'key',
         key: 'key',
-        render: (text, row, index) => <Link to={`/recruit/${text}`}>{text}</Link>,
+        render: (text, row, index) => <Link to={`/recruit/${text}`} target="_blank">{text}</Link>,
       },
       {
         title: '招聘标题',
         dataIndex: 'title',
         key: 'title',
-        render: (text, row, index) => <Link to={`/recruit/${row.key}`}>{text}</Link>,
+        render: (text, row, index) => <Link to={`/recruit/${row.key}`} target="_blank">{text}</Link>,
         filterDropdown: (
           <div className="custom-filter-dropdown">
             <Input
@@ -105,7 +124,7 @@ class Recuit extends PureComponent {
         key: 'action',
         render: (text, record) => (
           <span>
-            <a href="javascript:;">删除</a>
+            <a href="javascript:;" data-id={record.key} onClick={this.deleteItem}>删除</a>
           </span>
         )
       }];

@@ -157,6 +157,16 @@ async function getAnArticle(ctx) {
 async function delArtcle(ctx) {
   let body = ctx.request.body;
   try {
+    await Models.Comment.destroy({
+      where: {
+        ArticleId: body.id
+      }
+    })
+    await Models.Like.destroy({
+      where: {
+        ArticleId: body.id
+      }
+    })
     await Models.Article.destroy({
       where: {
         id: body.id
@@ -232,6 +242,29 @@ async function recommendedArticles(ctx) {
   ctx.status = 200;
 }
 
+async function recommend(ctx){
+  let body = ctx.request.body;
+  try {
+    await Models.Article.update({
+      heats: 10
+    }, {
+      where: {
+        id: body.id
+      }
+    });
+    ctx.body = {
+      status: true,
+      message: '更新成功'
+    }
+  } catch (error) {
+    Logger.error(`update artcle: ${error.message}`)
+    ctx.body = {
+      status: false,
+      message: '更新失败'
+    }
+  }
+  ctx.status = 200;
+}
 
 let article = {
   getAllArtcle,
@@ -239,6 +272,7 @@ let article = {
   addArtcle,
   delArtcle,
   updateArtcle,
+  recommend,
   recommendedArticles
 }
 
