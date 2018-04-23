@@ -35,6 +35,8 @@
         }
     }
     .admin-container {
+        height: calc(~"100vh - 64px");
+        overflow-y: scroll;
         .custom-filter-dropdown {
             padding: 8px;
             border-radius: 6px;
@@ -48,6 +50,29 @@
     }
     .jscode-list-container {
         margin: 24px 32px;
+        .advantisement {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 1.5rem;
+        }
+        .advantisement-form {
+            display: flex;
+            flex: 1 1 auto;
+            padding: 25px 25px 0 25px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ebedf0;
+            .ant-form {
+                width: 100%;
+            }
+            .ant-btn {
+                width:100%;
+            }
+        }
+        .ad-preview {
+            margin: 0 200px 0 25px;
+            align-self: center;
+        }
     }
 }
 .ant-dropdown .mobile-menu,

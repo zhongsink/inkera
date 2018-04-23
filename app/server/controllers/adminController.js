@@ -47,14 +47,60 @@ async function objList(ctx) {
 }
 
 async function addAd(ctx) {
+  let body = ctx.request.body;
   try {
     await Models.Ad.create({
-      title: '腾讯云　容器服务 CCS',
-      url: 'https://cloud.tencent.com/product/ccs',
-      imgUrl: '/public/img/6c80707.jpg'
+      title: body.title,
+      url: body.url,
+      imgUrl: body.imgUrl
     })
     ctx.body = {
       status: true
+    };
+  } catch (error) {
+    ctx.body = {
+      status: false
+    };
+  }
+  ctx.status = 200;
+}
+async function updateAd(ctx) {
+  let body = ctx.request.body;
+  try {
+    let ad = await Models.Ad.findOne({
+      where: {
+        id: body.id
+      }
+    })
+    await ad.update({
+      title: body.title,
+      url: body.url,
+      imgUrl: body.imgUrl
+    });
+    ctx.body ={
+      status: true
+    }
+  } catch (error) {
+    Logger.error(error.message);
+    ctx.body ={
+      status: false
+    }
+  }
+  ctx.status = 200;
+}
+
+async function getAd (ctx) {
+  try {
+   let result = await Models.Ad.findAll(
+      {
+        attributes: [
+          'id', 'title', 'url', 'imgUrl'
+        ]
+      }
+    );
+    ctx.body = {
+      status: true,
+      result: result
     };
   } catch (error) {
     ctx.body = {
@@ -99,5 +145,7 @@ async function adminUser(ctx) {
 module.exports = {
   objList,
   addAd,
+  getAd,
+  updateAd,
   adminUser,
 }
