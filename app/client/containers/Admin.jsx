@@ -1,6 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Layout, Menu, Breadcrumb, Icon, message } from 'antd';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import User from '../components/admin/user';
 import Article from '../components/admin/article';
 import Question from '../components/admin/question';
@@ -8,6 +8,7 @@ import Recuit from '../components/admin/recuit';
 import Ad from '../components/admin/ad';
 import Setting from '../components/admin/setting';
 import axios from 'axios';
+import Logined from '../components/common/Logined'
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -16,11 +17,34 @@ import './styles/Admin.less'
 class Admin extends React.Component {
   state = {
     collapsed: false,
+    async: false,
+    user: {}
   };
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
   }
+  componentDidMount() {
+    let self = this;
+    axios.get(`/admin/user`)
+      .then(function (response) {
+        if (response.data.status) {
+          self.setState({
+            async: true,
+            user: response.data.result,
+          });
+        }
+      })
+      .catch(function (error) {
+        message.error(error);
+      });
+  }
   render() {
+    if (!this.state.async)
+      return null;
+    if (this.state.async && !this.state.user.role) {
+      return <Redirect to='/' />
+    }
+    let {user} = this.state;
     return (
       <Layout
         style={{ minHeight: '100vh' }}
@@ -33,10 +57,8 @@ class Admin extends React.Component {
             </Link>
           </div>
           <div className="jscode-user-bar">
-            <span>欢迎 inkera</span>
-            <Link to="/">
-              <span>返回主站首页</span>
-            </Link>
+            <span>欢迎 {user.name}</span>
+            <Logined user={user}/>
           </div>
         </Header>
         <Layout>
@@ -61,7 +83,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="3">
                 <Link to="/jscode/admin/question">
-                <Icon type="exception" />
+                  <Icon type="exception" />
                   <span>问答管理</span>
                 </Link>
               </Menu.Item>

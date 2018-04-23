@@ -48,6 +48,8 @@ router.get('/watchs', watchController.allWatchs);
 router.post('/watch/toggle', watchController.toggle);
 
 router.get('/admin/list', adminController.objList);
+router.get('/admin/ad', adminController.addAd);
+router.get('/admin/user', adminController.adminUser);
 
 router.delete('/logout', sessionController.logout);
 

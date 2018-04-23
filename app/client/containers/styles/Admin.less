@@ -28,7 +28,7 @@
             justify-content: flex-end;
             align-items: center;
             span {
-                padding-left: .5rem;
+                padding-right: 1rem;
                 font-size: 14px;
                 color: white;
             }
@@ -48,5 +48,29 @@
     }
     .jscode-list-container {
         margin: 24px 32px;
+    }
+}
+.ant-dropdown .mobile-menu,
+.ant-dropdown .user-bar-menu {
+    padding: 5px 0;
+    .ant-dropdown-menu-item-divider {
+        margin: 5px 0;
+    }
+    .ant-dropdown-menu-item {
+        &.ant-dropdown-menu-item-selected {
+            background: #fff;
+            a {
+                background: #fff;
+            }
+        }
+        &:hover {
+            background-color: hsla(0, 0%, 95%, .5);
+        }
+        a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 0;
+            font-size: 1rem;
+        }
     }
 }
