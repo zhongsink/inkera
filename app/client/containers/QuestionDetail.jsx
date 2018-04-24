@@ -11,8 +11,11 @@ import { Icon, BackTop, message, Affix } from 'antd'
 import axios from 'axios';
 import './styles/QuestionDetail.less';
 
-const getQuestion = (self, str)=> {
-  axios.get(`/question/get?id=${str}`)
+let timer = null;
+const getQuestion = (self, str) => {
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    axios.get(`/question/get?id=${str}`)
       .then(function (response) {
         if (response.data.status) {
           self.setState({
@@ -23,6 +26,7 @@ const getQuestion = (self, str)=> {
       .catch(function (error) {
         message.error(error.message);
       });
+  }, 50);
 }
 class QuestionDetail extends React.Component {
   constructor() {
@@ -57,7 +61,7 @@ class QuestionDetail extends React.Component {
     let { match } = this.props
     getQuestion(self, match.params.id);
     this.props.history.listen((route) => {
-      if(route.pathname.indexOf('/question/') === 0)
+      if (route.pathname.indexOf('/question/') === 0)
         getQuestion(self, route.pathname.slice(10));
     });
     axios.get(`/question/get?id=${match.params.id}`)
@@ -92,7 +96,7 @@ class QuestionDetail extends React.Component {
         <Navigator />
         <div className="center question-detail">
           <section className="question-container">
-            <QuestionContent user={user} question={question} match={match}/>
+            <QuestionContent user={user} question={question} match={match} />
             <div className="aside">
               <Affix offsetTop={10}>
                 <SideUser user={user} />

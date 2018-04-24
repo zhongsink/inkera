@@ -12,8 +12,11 @@ import { Icon, BackTop, Affix, message } from 'antd'
 import axios from 'axios';
 import './styles/Acticle.less';
 
+let timer = null;
 let getArticle = (self, str) => {
-  axios.get(`/article/get?id=${str}`)
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    axios.get(`/article/get?id=${str}`)
       .then(function (response) {
         if (response.data.status) {
           self.setState({
@@ -24,6 +27,7 @@ let getArticle = (self, str) => {
       .catch(function (error) {
         message.error(error);
       });
+  }, 50);
 }
 class Acticle extends React.Component {
   constructor() {
@@ -58,7 +62,7 @@ class Acticle extends React.Component {
     let self = this;
     let { match } = this.props
     this.props.history.listen((route) => {
-      if(route.pathname.indexOf('/article/') === 0)
+      if (route.pathname.indexOf('/article/') === 0)
         getArticle(self, route.pathname.slice(9));
     });
     getArticle(self, match.params.id);

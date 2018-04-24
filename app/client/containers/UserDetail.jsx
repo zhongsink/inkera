@@ -10,8 +10,11 @@ import Aside from '../components/user/Aside';
 import Tab from '../components/user/Tab';
 import './styles/UserDetail.less';
 
-const getUserInfo = (self, str)=> {
-  axios.get(`/getUserInfo?hash=${str}`)
+let timer = null;
+const getUserInfo = (self, str) => {
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    axios.get(`/getUserInfo?hash=${str}`)
       .then(function (response) {
         if (response.data.status) {
           self.setState({
@@ -25,6 +28,7 @@ const getUserInfo = (self, str)=> {
       .catch(function (error) {
         message.error(error);
       });
+  }, 50);
 }
 class UserDetail extends React.Component {
   constructor() {
@@ -56,8 +60,9 @@ class UserDetail extends React.Component {
     let self = this;
     getUserInfo(self, match.params.hash)
     this.props.history.listen((route) => {
-      if(route.pathname.indexOf('/user/') === 0)
+      if (route.pathname.indexOf('/user/') === 0 && route.pathname != '/user/profile') {
         getUserInfo(self, route.pathname.slice(6));
+      }
     });
   }
   renderUserInfo() {
@@ -78,7 +83,7 @@ class UserDetail extends React.Component {
 
   render() {
     let { match } = this.props
-    let {likeArticles, articles, questions} = this.state
+    let { likeArticles, articles, questions } = this.state
     return (
       <div className="main">
         <Navigator />
@@ -89,7 +94,7 @@ class UserDetail extends React.Component {
               <Tab like={likeArticles} articles={articles} questions={questions} />
             </div>
             <div className="aside">
-              <Aside like={likeArticles.length} article={articles.length} question={questions.length}/>
+              <Aside like={likeArticles.length} article={articles.length} question={questions.length} />
             </div>
           </section>
         </div>
