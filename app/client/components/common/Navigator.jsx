@@ -40,8 +40,12 @@ class Navigator extends React.Component {
       sort: 'stars',
       order: 'desc',
     };
-    dispatch(listRepositories({ query }));
-    this.context.router.history.push(`/repositories${objectToQueryString(query)}`);
+    window.open(
+      `https://www.baidu.com/s?wd=${this.state.value}`,
+      '_blank'
+    );
+    // dispatch(listRepositories({ query }));
+    // this.context.router.history.push(`/repositories${objectToQueryString(query)}`);
   }
 
   render() {
