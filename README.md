@@ -1,4 +1,7 @@
 # inkera
+![2018-04-24 12 10 43](https://user-images.githubusercontent.com/12597344/39165817-e3dfd284-47b8-11e8-8829-a6e3d67650eb.png)
+
+![2018-04-24 12 10 58](https://user-images.githubusercontent.com/12597344/39165805-d7fbf510-47b8-11e8-8c1a-f20fee1b63ce.png)
 
 > koa2、react、react-universal-component、koa-webpack-server、async/await、code-splitting、hot-module-replacement、react-router4、redux-thunk
 
