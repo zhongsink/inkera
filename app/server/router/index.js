@@ -10,6 +10,7 @@ const answerController = require('../controllers/answerController');
 const sessionController = require('../controllers/sesstionController');
 const watchController = require('../controllers/watchController');
 const adminController = require('../controllers/adminController');
+const upload = require('../utils/upload');
 
 let router = new Router();
 
@@ -39,6 +40,7 @@ router.delete('/recruit/delete', recruitController.delRecruit);
 router.get('/recruit/get', recruitController.getAnRecruit);
 
 router.post('/updateProfile', profileController.updateProfile);
+router.post('/updateAvatar', profileController.updateAvatar);
 
 router.get('/comment/list', commentController.allComment);
 router.post('/comment/add', commentController.addComment);
@@ -54,6 +56,14 @@ router.get('/ad/list', adminController.getAd);
 router.post('/admin/ad/add', adminController.addAd);
 router.post('/admin/ad/update', adminController.updateAd);
 router.get('/admin/user', adminController.adminUser);
+
+router.post('/upload', upload.single('file'), async (ctx) => {
+    ctx.body = {
+      status: true,
+      url: `/public/uploads/${ctx.req.file.filename}`
+    }
+    ctx.status = 200;
+});
 
 router.delete('/logout', sessionController.logout);
 

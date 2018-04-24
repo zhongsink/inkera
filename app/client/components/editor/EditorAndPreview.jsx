@@ -4,6 +4,32 @@ import { connect } from 'react-redux';
 import Avatar from 'react-avatar';
 import Markdown from '../common/Markdown'
 
+const props = {
+  name: 'file',
+  action: '/upload',
+  headers: {
+    'csrf-token': document.querySelector("meta[name=csrf-token]").content,
+  },
+  showUploadList: false,
+  supportServerRender: true,
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      message.success(`${info.file.name} 上传中`);
+    }
+    if (info.file.status === 'done') {
+      if(info.file.response.status) {
+        message.success('上传成功');
+        let texaArea = document.querySelector('#my-input');
+        texaArea.value = texaArea.value + `\n![${info.file.name}](${info.file.response.url})`;
+      }else {
+        message.error('上传失败');
+      }
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} 上传失败。`);
+    }
+  },
+};
+
 class EditorAndPreview extends PureComponent {
   constructor() {
     super();
@@ -11,28 +37,11 @@ class EditorAndPreview extends PureComponent {
 
   render() {
     let { type, lable, content, change } = this.props
-    const props = {
-      name: 'file',
-      action: '/upload.do',
-      headers: {
-        authorization: 'authorization-text',
-      },
-      onChange(info) {
-        if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-          message.success(`${info.file.name} 上传成功。`);
-        } else if (info.file.status === 'error') {
-          message.error(`${info.file.name} 上传失败。`);
-        }
-      },
-    };
 
     return (
       <div className="editor-container">
         <div className="editor-box">
-          <textarea className="ace_text-input" autoCapitalize="off" onChange={change.contentChange}>
+          <textarea className="ace_text-input" id="my-input" autoCapitalize="off" onChange={change.contentChange}>
           </textarea>
           <div className="editor-action">
             <Upload {...props}>

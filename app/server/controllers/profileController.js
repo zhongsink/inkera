@@ -36,8 +36,30 @@ async function updateProfile(ctx) {
   ctx.status = 200;
 }
 
+async function updateAvatar(ctx) {
+  let body = ctx.request.body;
+  try {
+    await Models.User.update({
+      portrait: body.url
+    }, {
+      where: {
+        authentication_token: body.token
+      }
+    });
+    ctx.body = {
+      status: true
+    }
+  } catch (error) {
+    ctx.body = {
+      status: false
+    }
+  }
+  ctx.status = 200;
+}
+
 let profile = {
   updateProfile,
+  updateAvatar
 }
 
 module.exports = profile
