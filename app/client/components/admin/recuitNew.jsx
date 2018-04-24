@@ -64,8 +64,8 @@ class RecuitNew extends PureComponent {
       <Content className="recuit-new">
         <div className="editor-nav">
           <input placeholder="输入标题" maxLength="80" className="title-input" value={this.state.title} onChange={this.titleChange}/>
-          <input placeholder="转载" maxLength="10"  value={this.state.from} onChange={this.fromChange}/>
-          <input placeholder="url" maxLength="80"  value={this.state.url} onChange={this.urlChange}/>
+          <input placeholder="转载:" maxLength="10"  value={this.state.from} onChange={this.fromChange}/>
+          <input placeholder="url:" maxLength="80"  value={this.state.url} onChange={this.urlChange}/>
           <div className="right-box">
             <div className="action-bar">
               <Button type="primary" onClick={this.save}>
@@ -74,7 +74,7 @@ class RecuitNew extends PureComponent {
             </div>
           </div>
         </div>
-        <EditorAndPreview type="question" lable='' content={this.state.content} change={{ contentChange, labelChange }} />
+        <EditorAndPreview type="recuilt" lable='' content={this.state.content} change={{ contentChange, labelChange }} />
       </Content>
     )
   }

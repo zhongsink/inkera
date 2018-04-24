@@ -4,8 +4,10 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import RecomendedBox from '../components/common/RecomendedBox';
+import { adList } from '../models/actions/ad';
 import List from '../components/home/List'
 import { BackTop, Affix, message } from 'antd'
+import { connect } from 'react-redux';
 import axios from 'axios';
 import './styles/Home.less';
 
@@ -37,7 +39,9 @@ class Home extends React.Component {
   }
   componentDidMount() {
     let self = this;
-    let { match } = this.props
+    let { match, dispatch, ad } = this.props
+    if (!ad.data.length)
+      dispatch(adList());
     axios.get(`/article/recommended`)
       .then(function (response) {
         if (response.data.status) {
@@ -52,13 +56,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const adv = [
-      {
-        title: '腾讯云　容器服务 CCS',
-        url: 'https://cloud.tencent.com/product/ccs',
-        imgUrl: '/public/img/6c80707.jpg'
-      }
-    ]
+    let data = this.props.ad.data;
+    let ad = data.length >= 1? data[0] : { title: '', url: '', imgUrl: ''}
     return (
       <div className="main">
         <Navigator current="home" />
@@ -67,7 +66,7 @@ class Home extends React.Component {
             <List />
             <div className="aside">
               <Affix offsetTop={10}>
-                <Advertisement Ad={adv[0]} />
+                <Advertisement Ad={ad} />
                 {this.state.list.length > 0 ? <RecomendedBox title="你可能感兴趣的文章" type="article" list={this.state.list} /> : null}
               </Affix>
             </div>
@@ -80,4 +79,5 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({ ad: state.ad });
+export default connect(mapStateToProps)(Home);

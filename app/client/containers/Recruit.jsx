@@ -6,25 +6,24 @@ import Navigator from '../components/common/Navigator';
 import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import SideBar from '../components/recruit/SideBar';
-import List from '../components/recruit/List'
+import List from '../components/recruit/List';
+import { adList } from '../models/actions/ad';
 import './styles/Recruit.less';
 
 class Recruit extends React.Component {
   constructor() {
     super();
   }
+  componentDidMount() {
+    let { dispatch, ad } = this.props
+    if (!ad.data.length)
+      dispatch(adList());
+  }
   render() {
-    const adv = [{
-      title: 'TensorFlow 官方文档中文版 V1.7',
-      url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: '/public/img/2bd9d875e6e.jpg'
-    },
-    {
-      title: '腾讯云　容器服务 CCS',
-      url: 'https://cloud.tencent.com/product/ccs',
-      imgUrl: '/public/img/6c80707.jpg'
-    }
-    ]
+    let data = this.props.ad.data,
+        template = { title: '', url: '', imgUrl: ''},
+        ad = data.length >= 1? data[0] : template,
+        ad1 = data.length >= 1? data[1] : template;
     return (
       <div className="main">
         <Navigator current='recruit' />
@@ -33,8 +32,8 @@ class Recruit extends React.Component {
             <List />
             <div className="aside">
               <Affix offsetTop={10}>
-                <Advertisement Ad={adv[0]} />
-                <Advertisement Ad={adv[1]} />
+                <Advertisement Ad={ad} />
+                <Advertisement Ad={ad1} />
                 <SideBar />
               </Affix>
             </div>
@@ -46,4 +45,5 @@ class Recruit extends React.Component {
     )
   }
 }
-export default connect()(Recruit);
+const mapStateToProps = state => ({ ad: state.ad });
+export default connect(mapStateToProps)(Recruit);

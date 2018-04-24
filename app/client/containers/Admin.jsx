@@ -100,12 +100,6 @@ class Admin extends React.Component {
                   <span>广告管理</span>
                 </Link>
               </Menu.Item>
-              {/* <Menu.Item key="9">
-                <Link to="/jscode/admin/setting">
-                  <Icon type="setting" />
-                  <span>设置</span>
-                </Link>
-              </Menu.Item> */}
             </Menu>
           </Sider>
           <Layout className="admin-container">

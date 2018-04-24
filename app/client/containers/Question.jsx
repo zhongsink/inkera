@@ -7,6 +7,7 @@ import Footer from '../components/common/Footer';
 import Advertisement from '../components/common/Advertisement';
 import List from '../components/question/List'
 import RecomendedBox from '../components/common/RecomendedBox';
+import { adList } from '../models/actions/ad';
 import { BackTop, Affix, message } from 'antd'
 import axios from 'axios';
 import './styles/Question.less';
@@ -20,7 +21,9 @@ class Question extends React.Component {
   }
   componentDidMount() {
     let self = this;
-    let { match } = this.props
+    let { match, dispatch, ad } = this.props
+    if (!ad.data.length)
+      dispatch(adList());
     axios.get(`/question/recommended`)
       .then(function (response) {
         if (response.data.status) {
@@ -34,12 +37,8 @@ class Question extends React.Component {
       });
   }
   render() {
-    const adv = [{
-      title: 'TensorFlow 官方文档中文版 V1.7',
-      url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: '/public/img/2bd9d875e6e.jpg'
-    }
-    ]
+    let data = this.props.ad.data;
+    let ad = data.length >= 1? data[1] : { title: '', url: '', imgUrl: ''}
     return (
       <div className="main">
         <Navigator current='question' />
@@ -48,7 +47,7 @@ class Question extends React.Component {
             <List />
             <div className="aside">
               <Affix offsetTop={10}>
-                <Advertisement Ad={adv[0]} />
+                <Advertisement Ad={ad} />
                 {this.state.list.length > 0 ? <RecomendedBox title="你可能感兴趣的问答" type="question" list={this.state.list} /> : null}
               </Affix>
             </div>
@@ -60,4 +59,6 @@ class Question extends React.Component {
     )
   }
 }
-export default connect()(Question);
+
+const mapStateToProps = state => ({ ad: state.ad });
+export default connect(mapStateToProps)(Question);
