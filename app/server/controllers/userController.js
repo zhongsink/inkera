@@ -46,7 +46,17 @@ async function SignUp(ctx) {
       encrypted_password: md5(body.password),
       authentication_token: token
     }
-    await Models.User.create(params);
+    let user = await Models.User.create(params);
+    await Models.Profile.findOrCreate({
+      where: {
+        UserId: user.id
+      },
+      defaults: {
+        position: '学生',
+        company: 'jscode社区',
+        introduction: '人生苦短，码不停蹄'
+      }
+    });
     ctx.cookies.set('inkera-user-id', token);
     ctx.body = {
       status: true,
@@ -80,17 +90,12 @@ async function getCurrentUser(ctx) {
     }
     try {
       user = await Models.User.findOne(params);
-      profile = await Models.Profile.findOrCreate({
+      profile = await Models.Profile.findOne({
         where: {
           UserId: user.id
-        },
-        defaults: {
-          position: '学生',
-          company: 'jscode社区',
-          introduction: '人生苦短，码不停蹄'
         }
       })
-      if (user && profile[0]) {
+      if (user && profile) {
         currentUser = {
           login: true,
           id: user.id,
@@ -99,12 +104,12 @@ async function getCurrentUser(ctx) {
           email: user.email,
           authentication_token: user.authentication_token,
           portrait: user.portrait,
-          phone: profile[0].phone,
-          github: profile[0].github,
-          position: profile[0].position,
-          company: profile[0].company,
-          introduction: profile[0].introduction,
-          website: profile[0].website
+          phone: profile.phone,
+          github: profile.github,
+          position: profile.position,
+          company: profile.company,
+          introduction: profile.introduction,
+          website: profile.website
         }
         ctx.body = {
           status: 1,

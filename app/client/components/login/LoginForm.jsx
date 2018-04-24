@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { connect } from 'react-redux';
-import { userLogin } from '../../models/actions/user';
+import axios from 'axios';
 
 const createForm = Form.create;
 const FormItem = Form.Item;
@@ -15,20 +15,6 @@ class LoginForm extends React.Component {
     super();
   }
 
-  redirectToHome() {
-    let { user } = this.props;
-    if(user.login) {
-      this.props.redirectTo('/')
-    }
-  }
-
-  componentWillMount() {
-    this.redirectToHome();
-  }
-  componentWillUpdate() {
-    this.redirectToHome();
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((errors, values) => {
@@ -36,14 +22,23 @@ class LoginForm extends React.Component {
         console.log('Errors in form!!!');
         return;
       }
-      const { dispatch } = this.props;
-      let token = document.querySelector("meta[name=csrf-token]").content
-      dispatch(userLogin({
+      let token = document.querySelector("meta[name=csrf-token]").content;
+      axios.post('/login', {
         _csrf:token,
         email: values.email,
         password: values.passwd
-      }));
-      location.href = '/'
+      })
+      .then((Response) => {
+        if (Response.data.status) {
+          message.success('登录成功');
+          location.href='/';
+        } else {
+          message.error('登录失败，用户名或密码不正确');
+        }
+      })
+      .catch((error) => {
+        message.log(error);
+      });
     });
   }
 
