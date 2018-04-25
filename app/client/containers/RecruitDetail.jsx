@@ -6,8 +6,9 @@ import Advertisement from '../components/common/Advertisement';
 import RecruitContent from '../components/recruit/RecruitContent';
 import SideBar from '../components/recruit/SideBar';
 import { Link } from 'react-router-dom';
-import { Icon, BackTop, Affix } from 'antd'
+import { Icon, BackTop, Affix, message } from 'antd'
 import axios from 'axios';
+import { adList } from '../models/actions/ad';
 import './styles/RecruitDetail.less';
 
 class RecruitDetail extends React.Component {
@@ -28,7 +29,10 @@ class RecruitDetail extends React.Component {
   }
   componentDidMount() {
     let self = this;
-    let { match } = this.props
+    let { match, dispatch, ad } = this.props
+    if (!ad.data.length)
+      dispatch(adList());
+
     axios.get(`/recruit/get?id=${match.params.id}`)
       .then(function (response) {
         if (response.data.status) {
@@ -38,22 +42,15 @@ class RecruitDetail extends React.Component {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        message.error(error);
       });
   }
 
   render() {
-    const adv = [{
-      title: 'TensorFlow 官方文档中文版 V1.7',
-      url: 'https://github.com/xitu/tensorflow-docs',
-      imgUrl: '/public/img/2bd9d875e6e.jpg'
-    },
-    {
-      title: '腾讯云　容器服务 CCS',
-      url: 'https://cloud.tencent.com/product/ccs',
-      imgUrl: '/public/img/6c80707.jpg'
-    }
-    ]
+    let data = this.props.ad.data,
+        template = { title: '', url: '', imgUrl: ''},
+        ad = data.length >= 1? data[0] : template,
+        ad1 = data.length >= 1? data[1] : template;
     return (
       <div className="main">
         <Navigator />
@@ -62,8 +59,8 @@ class RecruitDetail extends React.Component {
             <RecruitContent recruit={this.state.result} />
             <div className="aside">
               <Affix offsetTop={10}>
-                <Advertisement Ad={adv[0]} />
-                <Advertisement Ad={adv[1]} />
+                <Advertisement Ad={ad} />
+                <Advertisement Ad={ad1} />
                 <SideBar />
               </Affix>
             </div>
@@ -75,5 +72,5 @@ class RecruitDetail extends React.Component {
     )
   }
 }
-
-export default connect()(RecruitDetail);
+const mapStateToProps = state => ({ ad: state.ad });
+export default connect(mapStateToProps)(RecruitDetail);
