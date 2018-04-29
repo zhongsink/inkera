@@ -13,11 +13,15 @@ const initialState = {
   company: undefined,
   portrait: undefined,
   introduction: undefined,
-  website:undefined
+  website: undefined,
 };
 
 const handlers = {
-    setUser: (state, { payload }) => ({ ...state,  ...payload.data })
+  setUser: (state, {
+    payload,
+  }) => ({ ...state,
+    ...payload.data,
+  }),
 };
 
 export default createReducer(initialState, handlers);
