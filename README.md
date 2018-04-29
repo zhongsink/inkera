@@ -3,6 +3,8 @@
 
 ![2018-04-24 12 10 58](https://user-images.githubusercontent.com/12597344/39165805-d7fbf510-47b8-11e8-8c1a-f20fee1b63ce.png)
 
+Environment: ubuntu 14.04
+
 > koa2、react、react-universal-component、koa-webpack-server、async/await、code-splitting、hot-module-replacement、react-router4、redux-thunk
 
 <b>Less is More:</b> All key ingredients are in `app/development`、`app/production` and webpack configurations, easy to understand、set-up and extend. We promise to use the most recent & official packages(as much as we can), no weird or tricky stuffs, keeping this project <b>clean and fully customizable</b>.
@@ -36,15 +38,7 @@ developing
 * jest
 * eslint(airbnb)
 * docker
-* wallaby
 
-### Roadmap
-
-* graphql(Github API v3 -> v4)
-* flow
-* enzyme
-* immutable
-* vendor
 
 ### Start
 
@@ -53,11 +47,18 @@ developing
 development
 
 * yarn / npm
-* node ≥ 7.0
+* node ≥ 7.6
 
 production
 
 * docker ≥ 1.13
+
+
+#### Development
+
+```
+yarn dev
+```
 
 #### Production
 
@@ -70,12 +71,6 @@ or with docker
 ```
 docker build -t inkera .
 docker run -d -p 3006:3006 inkera
-```
-
-#### Development
-
-```
-yarn dev
 ```
 
 #### Test
@@ -91,9 +86,3 @@ CMD + SHIFT + R -> R (vscode)
 ### License
 
 Base on https://github.com/kimjuny/koa-react-universal
-
-### Contributing
-
-Issues are welcome :)
-
-PRs are welcome (if you can help to make things more concise and simple!).
