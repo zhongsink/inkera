@@ -7,7 +7,7 @@ import ad from './ad';
 const usecaseReducers = {
   repository,
   user,
-  ad
+  ad,
 };
 
 export default combineReducers({ ...usecaseReducers });
