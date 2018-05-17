@@ -22,7 +22,7 @@ webpack(configs).run((err, stats) => {
   });
 
   const {
-    logger, statics,publicStatics, views, render,
+    logger, statics, publicStatics, views, render,
   } = require('../build/server/server');
 
   // koa2 middlewares
